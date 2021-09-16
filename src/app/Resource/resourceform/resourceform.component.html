@@ -1,0 +1,265 @@
+<div fxLayout="column">
+    <div style="-webkit-align-items: center;" fxLayout="column">
+        <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;"
+            onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true'
+            id="_arrowdown" tabindex='0'>
+    </div>
+
+    <div style="text-align: center;">
+        <h4 style="font-size: x-large;
+    font-weight: 500;
+    margin-top: revert;">Resource Form</h4>
+    </div>
+
+    <form [formGroup]="formgroup" class="example-form" fxLayout="column" fxFlex="50"
+        style="-webkit-align-items: center;">
+
+        <mat-form-field class="example-full-width" appearance="outline" display="table-row-group" >
+            <mat-label  style="margin-top: -10px;margin-left: -100px;">Source</mat-label>
+            <mat-select #name  formControlName="source" (selectionChange)="sourcetypechange($event)">
+                <mat-option *ngFor="let sourcetypes of sourceselect" [value]="sourcetypes.sourcetypecode">
+                    {{sourcetypes.sourcetype}}
+                </mat-option>
+
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="consultanted">
+            <mat-label style="font-weight: bold;color: #464545;">Consultant Name</mat-label>
+            <mat-select formControlName="consultant" (selectionChange)="selectedname($event)">
+                <mat-option *ngFor="let consulttypes of consultant" [value]="consulttypes.consultantcode">
+                    {{consulttypes.consultantype}}
+                </mat-option>
+
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="consultanted">
+            <mat-label style="font-weight: bold;color: #464545;"></mat-label>
+            <input matInput formControlName="consultantadd" readonly>
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="raferal">
+            <mat-label style="font-weight: bold;color: #464545;">Referal Type </mat-label>
+            <mat-select  formControlName="referaltype" (selectionChange)="referaltypechange($event)">
+                <mat-option *ngFor="let referaltype of referaltype" [value]="referaltype.referaltypeaddcode">
+                    {{referaltype.referaltypeadd}}
+                </mat-option>
+
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="external">
+            <mat-label style="font-weight: bold;color: #464545;">Referal Name</mat-label>
+            <input matInput formControlName="referalnameadd">
+        </mat-form-field>
+
+
+
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="internal">
+            <mat-label style="font-weight: bold;color: #464545;">Referal name </mat-label>
+            <mat-select formControlName="referalname">
+                <mat-option *ngFor="let referaltypes of referal" [value]="referaltypes.referaltypecode">
+                    {{referaltypes.referaltype}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <mat-label style="font-weight: bold;color: #464545;">Date</mat-label>
+            <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Date" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Post Applied for</mat-label>
+            <mat-select formControlName="postappliedfor">
+                <mat-option *ngFor="let postapplieds of postapplied" [value]="postapplieds.postappliedfortypecode">
+                    {{postapplieds.postappliedfortype}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div style="text-align: center;">
+            <h4 style="font-size: x-large;
+        font-weight: 500;
+        margin-top: revert;">Personal Details</h4>
+        </div>
+
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">FirstName</mat-label>
+            <input matInput formControlName="firstname">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">LastName</mat-label>
+            <input matInput formControlName="lastname">
+        </mat-form-field>
+
+
+        <style>
+            .mat-radio-button~.mat-radio-button {
+                margin-left: 10px;
+            }
+        </style>
+
+        <mat-radio-group style="font-weight: bold;color: #464545;" formControlName="gender">Gender
+            <mat-radio-button value="1">Male</mat-radio-button>
+            <mat-radio-button value="2">Female</mat-radio-button>
+        </mat-radio-group><br>
+   
+
+
+
+
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Mobile Number</mat-label>
+            <input matInput formControlName="mobilenumber">
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Whatsapp Number</mat-label>
+            <input matInput formControlName="whatsappnumber">
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">email ID </mat-label>
+            <input matInput formControlName="emailid">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;"> Aadhaar Number </mat-label>
+            <input matInput formControlName="adhaarnumber">
+        </mat-form-field>
+
+
+        <div style="text-align: center;">
+            <h4 style="font-size: x-large;
+        font-weight: 500;
+        margin-top: revert;">Educational Qualification </h4>
+        </div>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;"> Degree </mat-label>
+            <input matInput formControlName="degree">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;"> college/University </mat-label>
+            <input matInput formControlName="college">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;"> Years of passout </mat-label>
+            <input matInput formControlName="yearsofpassout">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;"> Percentage(%) </mat-label>
+            <input matInput formControlName="percentage">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Employeement Status</mat-label>
+            <mat-select  formControlName="employmentstatus" (selectionChange)="employeementtypechange($event)">
+                <mat-option *ngFor="let employees of employeement" [value]="employees.employeementstatustypecode">
+                    {{employees.employeementstatustype}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="experience">
+            <mat-label style="font-weight: bold;color: #464545;"> Company Name </mat-label>
+            <input matInput formControlName="companyname">
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="experience">
+            <mat-label style="font-weight: bold;color: #464545;"> No of Year Experience </mat-label>
+            <input matInput formControlName="noofyearexperience">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="experience">
+            <mat-label style="font-weight: bold;color: #464545;"> Total Experience </mat-label>
+            <input matInput formControlName="totalexperience">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="experience">
+            <mat-label style="font-weight: bold;color: #464545;"> Relevent Experience </mat-label>
+            <input matInput formControlName="releventexperience">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;"> Expected CTC </mat-label>
+            <input matInput formControlName="expectedctc">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;"> Current CTC </mat-label>
+            <input matInput formControlName="currentctc">
+        </mat-form-field>
+
+
+        <div style="text-align: center;">
+            <h4 style="font-size: x-large;
+        font-weight: 500;
+        margin-top: revert;"> Certification Details </h4>
+        </div>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Certification</mat-label>
+            <mat-select  formControlName="certification" (selectionChange)="certificationtypechange($event)">
+                <mat-option *ngFor="let certifications of certification" [value]="certifications.certificationtypecode">
+                    {{certifications.certificationtype}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="yes">
+            <mat-label style="font-weight: bold;color: #464545;"> Certificate </mat-label>
+            <input matInput formControlName="certificate">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="yes">
+            <mat-label style="font-weight: bold;color: #464545;"> certified from </mat-label>
+            <input matInput formControlName="certifiedfrom">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline" *ngIf="yes">
+            <mat-label style="font-weight: bold;color: #464545;">date</mat-label>
+            <input formControlName="validity" matInput [matDatepicker]="picker" placeholder="Date" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+
+
+
+
+        <div class="form-group">
+            <mat-label style="font-weight: bold;color:  #464545;"> Resume </mat-label>
+            <input type="file" class="form-control-file" formControlName="resume">
+        </div>
+        <br><br>
+        <mat-slide-toggle (change)="onToggle($event)" formControlName="status">Status</mat-slide-toggle>
+        <mat-label style="
+        color: black;
+        border-radius: 20px;
+        border-width: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: #3b3938;
+        margin-top: 15px;" [style.backgroundColor]="statuscolor">{{status}}</mat-label>
+    </form>
+
+    <div style="align-self: center;margin-top: 50px;">
+        <button mat-button type="submit" style="background-color: #5ac6c6;" (click)="saveform()">Save</button>
+    </div>
+</div>

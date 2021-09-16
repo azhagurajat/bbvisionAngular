@@ -3,7 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { CommonService } from 'src/app/common/common.service';
 import { QuestionMaster } from '../model/questionmaster';
+import { QuestionmasterService } from '../service/questionmaster.service';
 
 @Component({
   selector: 'app-questionmaster',
@@ -13,21 +15,19 @@ import { QuestionMaster } from '../model/questionmaster';
 export class QuestionmasterComponent implements OnInit {
 
   @ViewChild('search') searchElement!: ElementRef;
-  displayedColumns: string[] = ['name', 'status', 'tools'];
+  displayedColumns: string[] = ['sno', 'name', 'status', 'tools'];
   dataSource!: MatTableDataSource<QuestionMaster>;
-  question: QuestionMaster[] = [
-    { name: 'Question-A', status: "Active" },
-    { name: 'Question-B', status: "InActive" },
-  ];
+  questionview: QuestionMaster[] = [];
+  questionedit: QuestionMaster[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(public router: Router) { }
+  constructor(public router: Router, private service: QuestionmasterService, private commonservice: CommonService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.searchElement.nativeElement.focus();
     }, 0);
-    this.dataSource = new MatTableDataSource(this.question);
+    this.view();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -37,12 +37,25 @@ export class QuestionmasterComponent implements OnInit {
     }
   }
 
+  view() {
+    this.service.view().then(data => {
+      this.questionview = data.result;
+      this.dataSource = new MatTableDataSource(this.questionview);
+    }, err => {
+      this.commonservice.message("Error", err, "error");
+    });
+  }
+
   add() {
-    this.router.navigate(['/questionmasteradd', "", "InActive", "add"]);
+    const ques: QuestionMaster = new QuestionMaster();
+    this.questionedit[0] = ques;
+    this.router.navigateByUrl('/questionmasteradd', { state: this.questionedit });
   }
 
   selectedrow(row: any) {
-    this.router.navigate(['/questionmasteradd', row.name, row.status, "update"]);
+    this.questionedit = this.questionview.filter((elem: any) => elem.id === row.id)
+    this.questionedit[0].save = "update"
+    this.router.navigateByUrl('/questionmasteradd', { state: this.questionedit });
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

@@ -42,26 +42,14 @@ export class LeadComponent implements OnInit {
       id:6, call: 'Direct', date: '2001-0-30', companyname: 'infologia Ltd ', location: 'Chennai', contactnumber: '9884007875', department: 'Management', employee: 'Rajeshwari',
        clienttype: '', address: '', clientname: '', designation: '', mailid: '', product: '', feedback: '', followupdate: '', status: 'Quatoation Generated', color: "green",approvedstatus:"pending"
      },
-    // {
-    //   call: 'Incoming', date: '2021-08-06', companyname: 'Bluebase ', location: 'Guindy', contactnumber: '9841016631', department: 'Management', employee: 'Rajeshwari',
-    //   gstno: '', clientorgname: '', clientorgnametype: '', customername: '', customerdesignation: '', mobileno1: '', mobileno2: '', landlineno: '', emailid1: '',
-    //   emailid2: '', companyaddress: '', area: '', pincode: '', state: '', purchasedepartment: '', purchasecontactnumber: '', branch: '', purchasebranchaddress: '', pbarea: '', pbpincode: '', pbstate: '', pbdistrict: '',
-    //   pbtown: '', pbcountry: '', financedepartment: '', fddesignation: '', fdcontactnumber: '', fdmailid: '', fdbranch: '', fbpurchasebranchaddress: '', fbarea: '', fbpincode: '', fbstate: '', fbtown: '', fbdistrict: '',
-    //   fbcountry: '', website: '', status: 'Generated Lead', color: "green"
-    // },
-    // {
-    //   call: 'Outgoing', date: '2021-06-068', companyname: ' Bhastrik Ltd', location: 'Chennai', contactnumber: '9884007875', department: 'Management', employee: 'Gopinath',
-    //   gstno: '', clientorgname: '', clientorgnametype: '', customername: '', customerdesignation: '', mobileno1: '', mobileno2: '', landlineno: '', emailid1: '',
-    //   emailid2: '', companyaddress: '', area: '', pincode: '', state: '', purchasedepartment: '', purchasecontactnumber: '', branch: '', purchasebranchaddress: '', pbarea: '', pbpincode: '', pbstate: '', pbdistrict: '',
-    //   pbtown: '', pbcountry: '', financedepartment: '', fddesignation: '', fdcontactnumber: '', fdmailid: '', fdbranch: '', fbpurchasebranchaddress: '', fbarea: '', fbpincode: '', fbstate: '', fbtown: '', fbdistrict: '',
-    //   fbcountry: '', website: '', status: 'Generated Lead', color: "green"
-    // }
+    
 
   ];
  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   selectedRowIndex: any;
+  intro:any;
  
 
   constructor(public router: Router) {

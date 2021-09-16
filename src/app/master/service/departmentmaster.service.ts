@@ -18,6 +18,7 @@ export class DepartmentmasterService {
   }
 
   view(): Promise<any> {
+    debugger;
     const url = environment.API_URL + 'department_master/department_view.php';
     return this.http.post(url, this.httpOptions).toPromise();
   }

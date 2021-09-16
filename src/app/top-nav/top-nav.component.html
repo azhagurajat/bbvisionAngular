@@ -108,10 +108,20 @@
         notifications_active</mat-icon>
     <p style="min-width: 30px;"></p> -->
 
-    <button mat-button style="background-color: white;color: #020808;
+    <!-- <button mat-button style="background-color: white;color: #020808;
         font-weight: bold;max-height: 40px;min-width: 100px;margin-top: 15px;margin-right: 5px;border-radius: 15px;"
-        (click)="logout()">Logout</button>
-    <!-- <button mat-fab style="background-color: #226e80;" (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon>
-    </button> -->
+        (click)="logout()">Logout</button> -->
+
+
+    <button mat-button [matMenuTriggerFor]="menulogout" style="max-height: 50px;
+    margin-top: 10px;background-color: white;color: #020808;
+    font-weight: bold;">{{this.login.username}}</button>
+    <mat-menu #menulogout="matMenu">
+        <button mat-button (click)="logout()">
+            <mat-icon>Logout</mat-icon>
+        </button>
+    </mat-menu>
+
+
+
 </div>

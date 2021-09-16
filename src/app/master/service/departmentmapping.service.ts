@@ -19,6 +19,7 @@ export class DepartmentmappingService {
   }
 
   view(): Promise<any> {
+    debugger;
     const url = environment.API_URL + 'department_mapping/department_mapping_view.php';
     return this.http.post(url, this.httpOptions).toPromise();
   }

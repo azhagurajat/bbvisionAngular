@@ -12,6 +12,9 @@ import { LoginPojo } from './master/model/login';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   apidata: any[] = [];
   emp: boolean = false;
   hr: boolean = false;
@@ -148,8 +151,8 @@ export class AppComponent implements OnInit {
         route: 'productmaster',
       },
       {
-        menuname: 'assetmaster list',
-        displayName: 'assetmaster',
+        menuname: 'assetmaster',
+        displayName: 'Asset Master',
         disabled: false,
         iconName: 'input',
         route: 'assetmaster',
@@ -176,19 +179,19 @@ export class AppComponent implements OnInit {
         route: 'userrolemaster',
       },]
     },
-    {
-      menuname: 'asset',
-      displayName: 'Assets',
-      disabled: false,
-      iconName: 'input',
-      children: [{
-        menuname: 'simmaster',
-        displayName: 'Sim Master',
-        disabled: false,
-        iconName: 'input',
-        route: 'simmaster',
-      },]
-    },
+    // {
+    //   menuname: 'asset',
+    //   displayName: 'Assets',
+    //   disabled: false,
+    //   iconName: 'input',
+    //   children: [{
+    //     menuname: 'simmaster',
+    //     displayName: 'Sim Master',
+    //     disabled: false,
+    //     iconName: 'input',
+    //     route: 'simmaster',
+    //   },]
+    // },
     {
       menuname: 'utilities',
       displayName: 'Utilities',
@@ -220,17 +223,68 @@ export class AppComponent implements OnInit {
         disabled: false,
         iconName: 'input',
         route: 'lead',
+      },
+      {
+        menuname: 'costsheet',
+        displayName: 'Cost Sheet',
+        disabled: false,
+        iconName: 'input',
+        route: 'costsheet',
+      },
+      {
+        menuname: 'costsheetreverse',
+        displayName: 'Cost Sheet Reverse',
+        disabled: false,
+        iconName: 'input',
+        route: 'costsheetreverse',
       }]
-    }]
+    },
+    {
+      menuname: 'resource',
+      displayName: 'Resource',
+      disabled: false,
+      iconName: 'input',
+      children: [{
+        menuname: 'resourceform',
+        displayName: 'Resource Form',
+        disabled: false,
+        iconName: 'input',
+        route: 'resourceform',
+      },
+      {
+        menuname: 'resourcelist',
+        displayName: 'Resource List ',
+        disabled: false,
+        iconName: 'input',
+        route: 'resourcelist',
+      },
+      {
+        menuname: 'jobdescriptionviewmaster',
+        displayName: 'Job description Form',
+        disabled: false,
+        iconName: 'input',
+        route: 'jobdescriptionviewmaster',
+      },
+      {
+        menuname: 'jobdescriptionlistmaster',
+        displayName: 'Jobdescription List',
+        disabled: false,
+        iconName: 'input',
+        route: 'jobdescriptionlistmaster',
+      }
+
+
+      ]
+
+    }
+  ]
   login: LoginPojo = new LoginPojo();
   constructor(private navService: CommonService, public dialog: MatDialog, private router: Router) {
-    debugger;
     var sss = sessionStorage.getItem('logindet');
     if (sss) {
       this.topnav = true;
       this.router.navigate(['dashboard']);
     } else {
-      debugger;
       this.topnav = false;
       this.router.navigate(['/']);
     }
@@ -292,7 +346,7 @@ export class AppComponent implements OnInit {
       this.hr = false;
       this.finance = true;
       this.hod = false;
-    } else if (this.login.empLevel === "Admin") {
+    } else if (this.login.empLevel === "Hod") {
       this.emp = false;
       this.hr = false;
       this.finance = false;

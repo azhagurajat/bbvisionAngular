@@ -3,7 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { CommonService } from 'src/app/common/common.service';
 import { DivisionMaster } from '../model/divisionmaster';
+import { DivisionmasterService } from '../service/divisionmaster.service';
 
 @Component({
   selector: 'app-divisionmaster',
@@ -14,15 +16,13 @@ export class DivisionmasterComponent implements OnInit {
 
   @ViewChild('search') searchElement!: ElementRef;
   @ViewChild('name') nameElement!: ElementRef;
-  displayedColumns: string[] = ['dept', 'div', 'status', 'tools'];
+  displayedColumns: string[] = ['sno', 'dept', 'div', 'status', 'tools'];
   dataSource!: MatTableDataSource<DivisionMaster>;
-  question: DivisionMaster[] = [
-    { dept: 'Development', div: "Software", status: true },
-    { dept: 'Designing', div: "UI/UX", status: false },
-  ];
+  divisionview: DivisionMaster[] = [];
+  divisionedit: DivisionMaster[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(public router: Router) { }
+  constructor(public router: Router, private service: DivisionmasterService, private commonservice: CommonService) { }
 
   ngOnInit(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
@@ -31,7 +31,16 @@ export class DivisionmasterComponent implements OnInit {
     setTimeout(() => {
       this.searchElement.nativeElement.focus();
     }, 0);
-    this.dataSource = new MatTableDataSource(this.question);
+    this.view();
+  }
+  view() {
+    this.service.view().then(data => {
+      debugger;
+      this.divisionview = data.result;
+      this.dataSource = new MatTableDataSource(this.divisionview);
+    }, err => {
+      this.commonservice.message("Error", err, "error");
+    });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -42,11 +51,15 @@ export class DivisionmasterComponent implements OnInit {
   }
 
   add() {
-    this.router.navigate(['/divisionmasteradd', "", "", false, "add"]);
+    const div: DivisionMaster = new DivisionMaster();
+    this.divisionedit[0] = div;
+    this.router.navigateByUrl('/divisionmasteradd', { state: this.divisionedit });
   }
 
   selectedrow(row: any) {
-    this.router.navigate(['/divisionmasteradd', row.dept, row.div, row.status, "update"]);
+    this.divisionedit = this.divisionview.filter((elem: any) => elem.id === row.id)
+    this.divisionedit[0].save = "update"
+    this.router.navigateByUrl('/divisionmasteradd', { state: this.divisionedit });
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

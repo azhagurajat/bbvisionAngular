@@ -1,0 +1,309 @@
+<button mat-mini-fab routerLink="/jobdescriptionviewmaster"
+    style="background-color: #5ac6c6;float: right;margin-right: 10px;">
+    <mat-icon>arrow_back</mat-icon>
+</button>
+
+<div fxLayout="column" *ngIf="savedata">
+    <a>Add</a>
+    <div style="-webkit-align-items: center;" fxLayout="column">
+        <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;"
+            onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true'
+            id="_arrowdown" tabindex='0'>
+    </div>
+    <form [formGroup]="formgroup" class="example-form" fxLayout="column" fxFlex="50"
+        style="-webkit-align-items: center;">
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">JD Title</mat-label>
+            <mat-select formControlName="jdtitle">
+                <mat-option *ngFor="let jdtitles of jdselect" [value]="jdtitles.jdtypecode">
+                    {{jdtitles.jdtype}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Client</mat-label>
+            <mat-select formControlName="client">
+                <mat-option *ngFor="let clients of clientselect" [value]="clients.clienttypecode">
+                    {{clients.clienttype}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Location</mat-label>
+            <input matInput #location id="location" formControlName="location">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Experience</mat-label>
+            <input matInput #location id="experience" formControlName="experience">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Educational Qualification</mat-label>
+            <input matInput #location id="experience" formControlName="educationalqualification">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Certification</mat-label>
+            <input matInput #location id="experience" formControlName="certification">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Roles & Resposibilities</mat-label>
+            <input matInput #location id="experience" formControlName="roles">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Skills Required</mat-label>
+            <input matInput #location id="experience" formControlName="skillsrequired">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Date of Joining</mat-label>
+            <input formControlName="joining" matInput [matDatepicker]="picker" placeholder="Date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Date to be Closing</mat-label>
+            <input formControlName="closing" matInput [matDatepicker]="picker1" placeholder="Date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">Replacement For</mat-label>
+            <mat-select formControlName="replacementfor">
+                <mat-option *ngFor="let replacements of replacement" [value]="replacements.replacementtypecode">
+                    {{replacements.replacementtype}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label style="font-weight: bold;color: #464545;">CTC</mat-label>
+            <input matInput #joining id="closing" formControlName="ctc">
+        </mat-form-field>
+
+
+    </form>
+
+    <div style="align-self: center;margin-top: 100px;">
+        <button mat-button type="submit" style="background-color: #5ac6c6;" (click)="saveform()">Save</button>
+    </div>
+
+
+</div>
+
+<div fxLayout="column" *ngIf="!savedata">
+    <a>View</a>
+    <div style="-webkit-align-items: center;" fxLayout="column">
+        <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;"
+            onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true'
+            id="_arrowdown" tabindex='0'>
+    </div>
+
+    <form style="margin-left: 50px;" [formGroup]="formgroup" class="example-form" fxLayout="column" fxFlex="50">
+
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Jd Title
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="jdtitle" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Client
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+
+                    <input matInput formControlName="client" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Location
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+
+                    <input matInput formControlName="location" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Experience
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+
+                    <input matInput formControlName="experience" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Education Qualification
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+
+                    <input matInput formControlName="educationalqualification" readonly>
+
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Certification
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+
+                    <input matInput formControlName="certification" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Roles & Resposibilities
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+
+                    <input matInput formControlName="roles" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;color:#464545;">Skill Required</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="skillsrequired" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;color:#464545;">Date of Joining </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                    <input matInput formControlName="joining" readonly>
+                </mat-form-field>
+
+
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;color:#464545;">Date to be Closed </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                    <input matInput formControlName="closing" readonly>
+                </mat-form-field>
+
+
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;color:#464545;">Replacement For </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+
+                    <input matInput formControlName="replacementfor" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;color:#464545;"> CTC</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="ctc" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px" *ngIf="allocation">
+            <div fxFlex="15">
+                <mat-label style="font-weight: bold;color:#464545;"> Allocate</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field style="margin-top: -10px;margin-left: -100px;">
+                    <mat-label>Allocate</mat-label>
+                    <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
+                        cdkAutosizeMaxRows="5"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div style="align-self: center;margin-top: 100px;" *ngIf="allocation">
+            <button mat-button type="submit" style="background-color: #5ac6c6;">Allocation</button>
+        </div>
+
+        <div style="align-self: center;margin-top: 100px;" *ngIf="close">
+            <button mat-button type="submit" style="background-color: #5ac6c6;">closeJD</button>
+        </div>
+    </form>
+</div>
+
+

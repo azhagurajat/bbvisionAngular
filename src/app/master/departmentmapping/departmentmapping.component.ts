@@ -21,7 +21,7 @@ export class DepartmentmappingComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   status: string = "InActive";
-  statuscolor: string = "rgb(249 125 125)";
+  statuscolor: string = "rgb(153 153 153)";
 
   constructor(public router: Router, private service: DepartmentmappingService, private commonservice: CommonService) {
   }

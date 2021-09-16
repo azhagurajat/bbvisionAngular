@@ -18,6 +18,7 @@ export class EnquiryComponent implements OnInit {
     { calltype: 'Incoming', date: '2021-08-06', client: 'Bluebase ', location: 'Guindy', contactnumber: '9841016631', followupdate: '2021-08-07', employee: 'Rajeshwari', clienttype: '122', address: 'poonamalle', city: 'chennai', clientname: 'azhagu', designation: 'aaa', mailid: 'a@gmail', service: 'aaa', feedback: 'gggg', assigntodepartment: 'aaaa', assigntoemployee: 'aaa', accountmanagerdepartment: 'aaaa', accountmanager: 'Gopinath', status: 'EnquiryAdded',color:"green" },
     { calltype: 'Direct', date: '2021-0-30', client: 'Bhastrik Ltd ', location: 'Chennai', contactnumber: '9884007875', followupdate: '2021-07-07', employee: 'Gopinath', clienttype: '424', address: 'padalur', city: 'trichy', clientname: 'raja', designation: 'bbbb', mailid: 'b@gmail', service: 'aaa', feedback: 'bbb', assigntodepartment: 'bbbb', assigntoemployee: 'bbb', accountmanagerdepartment: 'bbbbb', accountmanager: 'Azhagu', status: 'Generated Lead',color:"blue" },
   ]
+  //example
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   selectedRowIndex: any;

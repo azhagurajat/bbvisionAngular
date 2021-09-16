@@ -2,8 +2,8 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ActivatedRoute } from '@angular/router';
-import { RoleMaster } from '../model/rolemaster';
 import { RolemasterComponent } from '../rolemaster/rolemaster.component';
+import { Checked, RoleMaster } from '../model/rolemaster';
 
 @Component({
   selector: 'app-rolemasteradd',
@@ -13,29 +13,40 @@ import { RolemasterComponent } from '../rolemaster/rolemaster.component';
 export class RolemasteraddComponent implements OnInit {
   @ViewChild(RolemasterComponent) childReference: any;
   formgroup!: FormGroup;
+  formgroup1!: FormGroup;
   role: RoleMaster = new RoleMaster();
-  name: any;
-  name1: any;
+  rname: any;
+  rcode: any;
   statuses: any;
-  @ViewChild('name') nameElement!: ElementRef;
+  @ViewChild('rname') nameElement!: ElementRef;
   status: string = "InActive";
-  statuscolor: string = "rgb(249 125 125)";
+  statuscolor: string = "rgb(153 153 153)";
   save: any;
   savedata: boolean = true;
+  view: boolean = true;
+  checked: Checked[] = 
+  [{ headingname: "Recruitment",check:[
+    { name: 'ApplicationForm', view: false, edit: true, All: false }, 
+    { name: 'CTC Approval', view: false, edit: true, All: false }] },
+    { headingname: "Master",check:[
+      { name: 'Department Master', view: false, edit: true, All: false }, 
+      { name: 'Division Master', view: false, edit: true, All: false }] }
+  ]
+  
   constructor(private route: ActivatedRoute, private fb: FormBuilder) { }
   sub!: any;
   ngOnInit(): void {
     debugger;
     this.sub = this.route.paramMap.subscribe(params => {
-      this.name = params.get('name');
-      this.name1 = params.get('name1');
+      this.rname = params.get('rname');
+      this.rcode = params.get('rcode');
       this.statuses = params.get('status');
       this.save = params.get('save');
       console.log(params);
     });
     debugger;
-    this.role.name = this.name;
-    this.role.name1 = this.name1;
+    this.role.rname = this.rname;
+    this.role.rcode = this.rcode;
     this.role.status = this.statuses;
 
     if (this.save === "add") {
@@ -43,13 +54,26 @@ export class RolemasteraddComponent implements OnInit {
     } else {
       this.savedata = false;
     }
+    if (this.save === "view") {
+      this.view = true;
+    } else {
+      this.view = false;
+    }
+
     this.formgroup = this.fb.group({
-      name: [this.role.name, [Validators.required]],
-      name1: [this.role.name1, [Validators.required]],
+      rname: [this.role.rname, [Validators.required]],
+      rcode: [this.role.rcode, [Validators.required]],
       status: [this.role.status, [Validators.required]]
     })
     debugger;
-    console.log(this.formgroup.value)
+    this.formgroup1 = this.fb.group({
+      rname: [this.role.rname, [Validators.required]],
+      rcode: [this.role.rcode, [Validators.required]],
+      status: [this.role.status, [Validators.required]]
+    })
+    //debugger;
+   // console.log(this.formgroup.value)
+    //console.log(this.formgroup1.value)
     this.ontoggledefault();
     setTimeout(() => {
       this.nameElement.nativeElement.focus();
@@ -68,6 +92,20 @@ export class RolemasteraddComponent implements OnInit {
       this.statuscolor = "rgb(153 153 153)";
     }
   }
+  ontoggle1default() {
+    debugger;
+    if (this.formgroup1.value.status === "true") {
+      this.status = "Active";
+      this.statuscolor = "#70ce70";
+    } else if (this.formgroup1.value.status === "false") {
+      this.formgroup1.patchValue({
+        status: false
+      })
+      this.status = "InActive";
+      this.statuscolor = "rgb(153 153 153)";
+    }
+  }
+  
   onToggle(event: MatSlideToggleChange) {
     debugger;
     if (event.checked) {
@@ -79,11 +117,14 @@ export class RolemasteraddComponent implements OnInit {
     }
 
   }
-  saveform(){
+
+
+
+  saveform() {
 
   }
 
-  update(){
-    
+  update() {
+
   }
 }

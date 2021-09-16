@@ -20,16 +20,23 @@
     <div class="example-container mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
+
+            <ng-container matColumnDef="sno">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef style="font-weight: bold;font-size: medium;
+                    color: #383131;"> #</th>
+                <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="assets">
                 <th mat-sort-header mat-header-cell *matHeaderCellDef style="font-weight: bold;font-size: medium;
                     color: #383131;"> Asset </th>
-                <td mat-cell *matCellDef="let element"> {{element.assets}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
             </ng-container>
 
             <ng-container matColumnDef="assetstype">
                 <th mat-sort-header mat-header-cell *matHeaderCellDef style="font-weight: bold;font-size: medium;
                     color: #383131;"> Asset Type </th>
-                <td mat-cell *matCellDef="let element"> {{element.assetstype}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.assettypename}} </td>
             </ng-container>
 
             <ng-container matColumnDef="prefixcode">
@@ -47,8 +54,7 @@
             <ng-container matColumnDef="tools">
                 <th mat-header-cell *matHeaderCellDef style="font-weight: bold;font-size: medium;
                     color: #383131;"> Edit </th>
-                <td mat-cell *matCellDef="let element"> <button mat-mini-fab style="background-color: #39a9a9;;"
-                        (click)="EditMethod(element)">
+                <td mat-cell *matCellDef="let element"> <button mat-mini-fab style="background-color: #39a9a9;;" (click)="EditMethod(element)">
                         <mat-icon>edit</mat-icon>
                     </button></td>
             </ng-container>

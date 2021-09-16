@@ -3,7 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { CommonService } from 'src/app/common/common.service';
 import { ServiceMaster } from '../model/servicemaster';
+import { ServicemasterService } from '../service/servicemaster.service';
 
 
 @Component({
@@ -14,27 +16,33 @@ import { ServiceMaster } from '../model/servicemaster';
 export class ServicemasterComponent implements OnInit {
   @ViewChild('search') searchElement!: ElementRef;
   @ViewChild('name') nameElement!: ElementRef;
-  displayedColumns: string[] = ['name', 'status', 'tools'];
+  displayedColumns: string[] = ['sno','name', 'status', 'tools'];
   dataSource!: MatTableDataSource<ServiceMaster>;
-  service: ServiceMaster[] = [
-    { name: 'IMS', status: true },
-    { name: 'AMC	', status: false },
-    { name: 'MPS	', status: false },
-    { name: 'Migration	', status: false },
-    { name: 'Others	', status: false },
-   
-  ];
+  serviceview: ServiceMaster[] = [];
+  serviceedit: ServiceMaster[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   selectedRowIndex: any;
-  constructor(public router: Router) { }
+  constructor(public router: Router, private service: ServicemasterService, private commonservice: CommonService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.searchElement.nativeElement.focus();
     }, 0);
-    this.dataSource = new MatTableDataSource(this.service);
+    this.view();
   }
+
+  view() {
+    debugger;
+    this.service.view().then(data => {
+      debugger;
+      this.serviceview = data.result;
+      this.dataSource = new MatTableDataSource(this.serviceview);
+    }, err => {
+      this.commonservice.message("Error", err, "error");
+    });
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -44,11 +52,15 @@ export class ServicemasterComponent implements OnInit {
   }
 
   add() {
-    this.router.navigate(['/servicemasteradd', "", false, "add"]);
+    const service: ServiceMaster = new ServiceMaster();
+    this.serviceedit[0] = service;
+    this.router.navigateByUrl('/servicemasteradd', { state: this.serviceedit });
   }
 
   selectedrow(row: any) {
-    this.router.navigate(['/servicemasteradd', row.name, row.status, "update"]);
+    this.serviceedit = this.serviceview.filter((elem: any) => elem.id === row.id)
+    this.serviceedit[0].save = "update"
+    this.router.navigateByUrl('/servicemasteradd', { state: this.serviceedit });
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

@@ -35,3 +35,45 @@
   font-size: 14px;
   width: 50%;
 }
+  .example-h2 {
+    margin: 10px;
+  }
+
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 48px;
+  }
+
+  .example-margin {
+    margin: 0 10px;
+  }
+
+.footerclass {
+  position: sticky;
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  display: inline-block;
+  text-align: right;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: blue !important;
+}
+
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}

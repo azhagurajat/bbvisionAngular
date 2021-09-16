@@ -1,26 +1,65 @@
 <button mat-mini-fab routerLink="../../../../../rolemaster"
-    style="background-color: #5ac6c6;float: right;margin-right: 10px;">
-    <mat-icon>arrow_back</mat-icon>
+  style="background-color: #5ac6c6;float: right;margin-right: 10px;">
+  <mat-icon>arrow_back</mat-icon>
 </button>
-<div fxLayout="column">
-    <div style="-webkit-align-items: center;" fxLayout="column">
-        <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;"
-            onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true'
-            id="_arrowdown" tabindex='0'>
-    </div>
-    <form [formGroup]="formgroup" class="example-form" fxLayout="column" fxFlex="50"
-        style="-webkit-align-items: center;">
-        <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label style="font-weight: bold;color: #464545;">Role Name</mat-label>
-            <input matInput #name id="name" formControlName="name">
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label style="font-weight: bold;color: #464545;">Role Code</mat-label>
-            <input matInput #name1 id="name1" formControlName="name1">
-        </mat-form-field>
-       
-        <mat-slide-toggle (change)="onToggle($event)" formControlName="status">Status</mat-slide-toggle>
-        <mat-label style="
+
+<div fxLayout="column" *ngIf="!view">
+  <div style="-webkit-align-items: center;" fxLayout="column">
+    <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;"
+      onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true'
+      id="_arrowdown" tabindex='0'>
+  </div>
+  <form [formGroup]="formgroup" class="example-form" fxLayout="column" fxFlex="50" style="-webkit-align-items: center;">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label style="font-weight: bold;color: #464545;">Role Name</mat-label>
+      <input matInput #rname id="rname" formControlName="rname">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label style="font-weight: bold;color: #464545;">Role Code</mat-label>
+      <input matInput #rcode id="rcode" formControlName="rcode">
+    </mat-form-field>
+
+    <mat-slide-toggle (change)="onToggle($event)" formControlName="status">Status</mat-slide-toggle>
+    <mat-label style="
+        color: black;
+        border-radius: 20px;
+        border-width: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        background-color: #3b3938;
+        margin-top: 15px;" [style.backgroundColor]="statuscolor">{{status}}</mat-label>
+  </form>
+
+
+  <div style="align-self: center;margin-top: 100px;" *ngIf="savedata">
+    <button mat-button type="submit" style="background-color: #5ac6c6;" (click)="saveform()">Save</button>
+  </div>
+
+  <div style="align-self: center;margin-top: 100px;" *ngIf="!savedata">
+    <button mat-button type="submit" style="background-color: #5ac6c6;" (click)="update()">Update</button>
+  </div>
+</div>
+
+
+
+<div *ngIf="view">
+  <div style="align-items: center;
+max-width: 95%;
+flex-direction: column;
+box-sizing: border-box;margin-top: 42px;">
+    <form [formGroup]="formgroup1" class="example-form" fxLayout="column" fxFlex="50"
+      style="-webkit-align-items: center;max-width: 89% !important;">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label style="font-weight: bold;color: #464545;">Role Name</mat-label>
+        <input matInput #rname id="rname" formControlName="rname" readonly>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label style="font-weight: bold;color: #464545;">Role Code</mat-label>
+        <input matInput #rcode id="rcode" formControlName="rcode" readonly>
+      </mat-form-field>
+
+      <mat-slide-toggle (change)="onToggle($event)" formControlName="status">Status</mat-slide-toggle>
+      <mat-label style="
         color: black;
         border-radius: 20px;
         border-width: 2px;
@@ -30,11 +69,40 @@
         margin-top: 15px;" [style.backgroundColor]="statuscolor">{{status}}</mat-label>
     </form>
 
-    <div style="align-self: center;margin-top: 100px;" *ngIf="savedata">
-        <button mat-button type="submit" style="background-color: #5ac6c6;" (click)="saveform()">Save</button>
-    </div>
+  </div>
 
-    <div style="align-self: center;margin-top: 100px;" *ngIf="!savedata">
-        <button mat-button type="submit" style="background-color: #5ac6c6;" (click)="update()">Update</button>
+
+  
+<div>
+  <div *ngFor="let checks of checked">
+    <mat-label style="font-weight: bold;color: #464545;padding: 26px 51px 38px 357px;">{{checks.headingname}}</mat-label>
+  <br>
+  <div *ngFor="let e of checks.check">
+    <section class="example-section" style="margin-left: 347px;">
+      <label class="example-margin" style="width: 243px;">{{e.name}}</label>
+        <mat-checkbox class="example-margin"   [checked]="e.view">View</mat-checkbox>
+        <mat-checkbox class="example-margin"    [checked]="e.edit">Edit</mat-checkbox>
+        <mat-checkbox class="example-margin"  [checked]="e.All">All</mat-checkbox>
+    </section>
     </div>
+    <br>
+    </div>
+  </div>
+
+
+
+
+ 
+      
+ 
+
+
+
+
+  <div class="footerclass">
+
+    <button mat-button type="submit" style="background-color:#445858;color:white;align-self: center;text-align: end;margin-top: 43px;"
+      (click)="saveform()">Save</button>
+
+  </div>
 </div>

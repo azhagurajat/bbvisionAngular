@@ -12,7 +12,7 @@ const routes: Routes = [{ path: '', loadChildren: () => import('../app/login/log
 { path: 'menu', component: MenuListItemComponent },
 { path: 'departmentmapping', loadChildren: () => import('../app/master/departmentmapping/departmentmapping.module').then(m => m.DepartmentmappingModule) },
 {
-  path: 'departmentmappingadd/:company/:dept/:head/:status/:save',
+  path: 'departmentmappingadd',
   loadChildren: () => import('../app/master/departmentmappingadd/departmentmappingadd.module').then(m => m.DepartmentmappingaddModule)
 },
 {
@@ -60,27 +60,27 @@ const routes: Routes = [{ path: '', loadChildren: () => import('../app/login/log
   loadChildren: () => import('../app/master/simmaster/simmaster.module').then(m => m.SimmasterModule)
 },
 {
-  path: 'companymasteradd/:name/:status/:save',
+  path: 'companymasteradd',
   loadChildren: () => import('../app/master/companymasteradd/companymasteradd.module').then(m => m.CompanymasteraddModule)
 }
   ,
 {
-  path: 'resourcemasteradd/:name/:status/:save',
+  path: 'resourcemasteradd',
   loadChildren: () => import('../app/master/resourcemasteradd/resourcemasteradd.module').then(m => m.ResourcemasteraddModule)
 }
   ,
 {
-  path: 'feedbackmasteradd/:name/:status/:save',
+  path: 'feedbackmasteradd',
   loadChildren: () => import('../app/master/feedbackmasteradd/feedbackmasteradd.module').then(m => m.FeedbackmasteraddModule)
 }
   ,
 {
-  path: 'servicemasteradd/:name/:status/:save',
+  path: 'servicemasteradd',
   loadChildren: () => import('../app/master/servicemasteradd/servicemasteradd.module').then(m => m.ServicemasteraddModule)
 }
   ,
 {
-  path: 'interviewroundsmasteradd/:name/:status/:save',
+  path: 'interviewroundsmasteradd',
   loadChildren: () => import('../app/master/interviewroundsmasteradd/interviewroundsmasteradd.module').then(m => m.InterviewroundsmasteraddModule)
 }
   ,
@@ -90,7 +90,7 @@ const routes: Routes = [{ path: '', loadChildren: () => import('../app/login/log
 }
   ,
 {
-  path: 'rolemasteradd/:name/:name1/:status/:save',
+  path: 'rolemasteradd/:rname/:rcode/:status/:save',
   loadChildren: () => import('../app/master/rolemasteradd/rolemasteradd.module').then(m => m.RolemasteraddModule)
 }
   ,
@@ -109,7 +109,7 @@ const routes: Routes = [{ path: '', loadChildren: () => import('../app/login/log
   loadChildren: () => import('../app/master/questionmaster/questionmaster.module').then(m => m.QuestionmasterModule)
 },
 {
-  path: 'questionmasteradd/:name/:status/:save',
+  path: 'questionmasteradd',
   loadChildren: () => import('../app/master/questionmasteradd/questionmasteradd.module').then(m => m.QuestionmasteraddModule)
 },
 {
@@ -117,7 +117,7 @@ const routes: Routes = [{ path: '', loadChildren: () => import('../app/login/log
   loadChildren: () => import('../app/master/sectionmaster/sectionmaster.module').then(m => m.SectionmasterModule)
 },
 {
-  path: 'sectionmasteradd/:name/:status/:save',
+  path: 'sectionmasteradd',
   loadChildren: () => import('../app/master/sectionmasteradd/sectionmasteradd.module').then(m => m.SectionmasteraddModule)
 },
 {
@@ -125,7 +125,7 @@ const routes: Routes = [{ path: '', loadChildren: () => import('../app/login/log
   loadChildren: () => import('../app/master/divisionmaster/divisionmaster.module').then(m => m.DivisionmasterModule)
 },
 {
-  path: 'divisionmasteradd/:dept/:div/:status/:save',
+  path: 'divisionmasteradd',
   loadChildren: () => import('../app/master/divisionmasteradd/divisionmasteradd.module').then(m => m.DivisionmasteraddModule)
 },
 {
@@ -153,7 +153,7 @@ const routes: Routes = [{ path: '', loadChildren: () => import('../app/login/log
   path: 'callsmaster',
   loadChildren: () => import('../app/master/callsmaster/callsmaster.module').then(m => m.CallsmasterModule)
 }, {
-  path: 'callsmasteradd/:name/:status/:save',
+  path: 'callsmasteradd',
   loadChildren: () => import('../app/master/callsmasteradd/callsmasteradd.module').then(m => m.CallsmasteraddModule)
 },
 {
@@ -161,7 +161,7 @@ const routes: Routes = [{ path: '', loadChildren: () => import('../app/login/log
   loadChildren: () => import('../app/master/assetmaster/assetmaster.module').then(m => m.AssetmasterModule)
 },
 {
-  path: 'assetmasteradds/:id/:id1/:id2/:id3/:save',
+  path: 'assetmasteradds',
   loadChildren: () => import('../app/master/assetmasteradds/assetmasteradds.module').then(m => m.AssetmasteraddsModule)
 },
 { path: 'jobdescription', loadChildren: () => import('../app/master/jobdescription/jobdescription.module').then(m => m.JobdescriptionModule) },
@@ -176,7 +176,7 @@ const routes: Routes = [{ path: '', loadChildren: () => import('../app/login/log
 },
 { path: 'userrolemaster', loadChildren: () => import('../app/master/userrolemaster/userrolemaster.module').then(m => m.UserrolemasterModule) },
 {
-  path: 'userrolemasteradd/:empname/:code/:rolename/:rolecode/:username/:password/:status/:save',
+  path: 'userrolemasteradd',
   loadChildren: () => import('../app/master/userrolemasteradd/userrolemasteradd.module').then(m => m.UserrolemasteraddModule)
 },
 {
@@ -190,10 +190,27 @@ const routes: Routes = [{ path: '', loadChildren: () => import('../app/login/log
 { path: 'enquiry', loadChildren: () => import('../app/crm/enquiry/enquiry.module').then(m => m.EnquiryModule) },
 { path: 'enquiryadd/:clienttype/:calltype/:date/:client/:address/:city/:clientname/:designation/:contactnumber/:mailid/:service/:feedback/:followupdate/:accountmanagerdepartment/:accountmanager/:assigntodepartment/:assigntoemployee/:status/:save', loadChildren: () => import('../app/crm/enquiryadd/enquiryadd.module').then(m => m.EnquiryaddModule) },
 { path: 'lead', loadChildren: () => import('./crm/lead/lead.module').then(m => m.LeadModule) },
-{ path: 'leadadd', loadChildren: () => import('./crm/leadadd/leadadd.module').then(m => m.LeadaddModule) }
+{ path: 'leadadd', loadChildren: () => import('./crm/leadadd/leadadd.module').then(m => m.LeadaddModule) },
+{ path: 'costsheet', loadChildren: () => import('./crm/costsheet/costsheet.module').then(m => m.CostsheetModule) },
+{ path: 'costsheetadd', loadChildren: () => import('./crm/costsheetadd/costsheetadd.module').then(m => m.CostsheetaddModule) },
+{ path: 'costsheetreverse', loadChildren: () => import('./crm/costsheetreverse/costsheetreverse.module').then(m => m.CostsheetreverseModule) },
+{ path: 'resourceform', loadChildren: () => import('./Resource/resourceform/resourceform.module').then(m => m.ResourceformModule) },
+{
+  path: 'jobdescriptionlistmaster',
+  loadChildren: () => import('../app/Resource/jobdescriptionlistmaster/jobdescriptionlistmaster.module').then(m => m.JobdescriptionlistmasterModule)
+},
+{
+  path: 'jobdescriptionviewmaster',
+  loadChildren: () => import('../app/Resource/jobdescriptionviewmaster/jobdescriptionviewmaster.module').then(m => m.JobdescriptionviewmasterModule)
+},
+{
+  path: 'jobdescriptionviewmasteradd',
+  loadChildren: () => import('../app/Resource/jobdescriptionviewmasteradd/jobdescriptionviewmasteradd.module').then(m => m.JobdescriptionviewmasteraddModule)
+},
+{ path: 'resourcelist', loadChildren: () => import('./Resource/resourcelist/resourcelist.module').then(m => m.ResourcelistModule) },
+{ path: 'resourcelistadd', loadChildren: () => import('./Resource/resourcelistadd/resourcelistadd.module').then(m => m.ResourcelistaddModule) }
+  ,
 ];
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],

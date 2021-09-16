@@ -1,8 +1,8 @@
-<button mat-mini-fab routerLink="../../../../interviewroundsmaster"
+<button mat-mini-fab routerLink="../interviewroundsmaster"
     style="background-color: #5ac6c6;float: right;margin-right: 10px;">
     <mat-icon>arrow_back</mat-icon>
 </button>
-<div fxLayout="column">
+<div fxLayout="column" *ngIf="!view">
     <div style="-webkit-align-items: center;" fxLayout="column">
         <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;"
             onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true'
@@ -23,6 +23,35 @@
         padding-right: 4px;
         background-color: #3b3938;
         margin-top: 15px;" [style.backgroundColor]="statuscolor">{{status}}</mat-label>
+
+        <br>
+        <mat-label style="font-weight: bold;color: #464545;">Interview Feedback</mat-label>
+        <br>
+        <div class="col" *ngFor="let interview of interviewrounds1 ">
+            <div class="col1">
+                <mat-card>{{ interview.headingname }}</mat-card>
+            </div>
+            <div class="col2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput #name1 id="name1" formControlName="name1">{{ interview.name1 }}
+                </mat-form-field>
+            </div>
+        </div>
+
+        <style>
+            .col {
+                display: flex;
+            }
+
+            .col div {
+                flex: 1
+            }
+
+            .col2 {
+                margin-left: 54px;
+            }
+        </style>
+
     </form>
 
     <div style="align-self: center;margin-top: 100px;" *ngIf="savedata">
@@ -32,4 +61,88 @@
     <div style="align-self: center;margin-top: 100px;" *ngIf="!savedata">
         <button mat-button type="submit" style="background-color: #5ac6c6;" (click)="update()">Update</button>
     </div>
+</div>
+
+
+<div *ngIf="view">
+
+
+    <div style="align-items: center;
+  max-width: 95%;
+  flex-direction: column;
+  box-sizing: border-box;margin-top: 42px;">
+        <form [formGroup]="formgroup" class="example-form" fxLayout="column" fxFlex="50"
+            style="-webkit-align-items: center;max-width: 89% !important;">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label style="font-weight: bold;color: #464545;">Interview Rounds Name</mat-label>
+                <input matInput #name id="name" formControlName="name">
+            </mat-form-field>
+
+
+            <mat-slide-toggle (change)="onToggle($event)" formControlName="status">Status</mat-slide-toggle>
+            <mat-label style="
+          color: black;
+          border-radius: 20px;
+          border-width: 2px;
+          padding-left: 4px;
+          padding-right: 4px;
+          background-color: #3b3938;
+          margin-top: 15px;" [style.backgroundColor]="statuscolor">{{status}}</mat-label>
+
+
+        </form>
+
+    </div>
+
+
+    <div>
+
+        <div fxLayout="row">
+            <span fxFlex="67"></span>
+            <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+                <mat-icon (click)="add()">add</mat-icon>
+            </button>
+            <button mat-mini-fab color="accent" aria-label="Example icon button with a menu icon">
+                <mat-icon (click)="removeSelectedRows()">delete</mat-icon>
+            </button>
+        </div>
+        <br>
+        <!-- <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" matSort> -->
+        <table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+            <ng-container matColumnDef="check">
+
+                <th mat-sort-header mat-header-cell *matHeaderCellDef style="font-weight: bold;font-size: medium;
+            color: #383131;">
+
+                    #
+                </th>
+                <td mat-cell *matCellDef="let element;">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(element) : null" [checked]="selection.isSelected(element)">
+                    </mat-checkbox>
+                </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+            <ng-container matColumnDef="phase">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef style="font-weight: bold;font-size: medium;
+            color: #383131;"> Interview Feedback </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-form-field class="example-full-width example" appearance="outline">
+                        <mat-label style="font-weight: bold;color: #464545;"></mat-label>
+                        <input matInput="">
+
+                    </mat-form-field>
+                <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+
+
+
 </div>

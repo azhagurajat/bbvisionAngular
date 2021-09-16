@@ -108,6 +108,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    debugger;
     this.loginpojo.username = this.loginForm.controls.username.value;
     this.loginpojo.password = this.loginForm.controls.password.value;
     if (!this.loginpojo.username) {
@@ -117,6 +118,7 @@ export class LoginComponent implements OnInit {
       alert('Password Should Not Be Empty');
       return;
     }
+    debugger;
     this.loginservice.login(this.loginpojo).then(data => {
       if (data.status) {
         debugger;

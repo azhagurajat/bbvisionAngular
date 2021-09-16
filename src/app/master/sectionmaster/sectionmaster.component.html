@@ -20,6 +20,12 @@
     <div class="example-container mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
+            <ng-container matColumnDef="sno">
+                <th mat-sort-header mat-header-cell *matHeaderCellDef style="font-weight: bold;font-size: medium;
+                    color: #383131;"> # </th>
+                <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="name">
                 <th mat-sort-header mat-header-cell *matHeaderCellDef style="font-weight: bold;font-size: medium;
                     color: #383131;"> Name </th>
@@ -35,8 +41,7 @@
             <ng-container matColumnDef="tools">
                 <th mat-header-cell *matHeaderCellDef style="font-weight: bold;font-size: medium;
                     color: #383131;"> Edit </th>
-                <td mat-cell *matCellDef="let element"> <button mat-mini-fab (click)="selectedrow(element)"
-                        style="background-color: #39a9a9;;">
+                <td mat-cell *matCellDef="let element"> <button mat-mini-fab (click)="selectedrow(element)" style="background-color: #39a9a9;;">
                         <mat-icon>edit</mat-icon>
                     </button></td>
             </ng-container>

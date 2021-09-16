@@ -14,21 +14,27 @@ import { InterviewroundsMaster } from '../model/interviewroundsmaster';
 export class InterviewroundsmasterComponent implements OnInit {
   @ViewChild('search') searchElement!: ElementRef;
   @ViewChild('name') nameElement!: ElementRef;
-  displayedColumns: string[] = ['name', 'status', 'tools'];
+  displayedColumns: string[] = ['name', 'status', 'tools','tools1'];
   dataSource!: MatTableDataSource<InterviewroundsMaster>;
+  interviewroundsmasteredit: InterviewroundsMaster[] = [];
   interviewrounds: InterviewroundsMaster[] = [
-    { name: 'Assessment', status: true },
-    { name: 'PHP Technical		', status: false },
-    { name: 'HOD	', status: false },
-    { name: 'MD	', status: false },
-    { name: 'Android Technical		', status: false },
-    { name: 'Java Technical			', status: false },
-    { name: 'Angular Technical			', status: false },
-    { name: 'HR		', status: false },
-    { name: 'tech		', status: false },
-    { name: 'hod		', status: false },
+
+    {
+      name: 'Assessment', status: true, save:'add', color: 'rgb(137 185 236)', width: '40% ', button: 'Interview Mapping',
+
+      interviewrounds1: [
+        { name1: 'ApplicationForm', headingname: 'Assessments' },
+        { name1: 'ApplicationForm', headingname: 'Assessments' },
+        { name1: 'ApplicationForm', headingname: 'Assessments' },
+      ]
+    },
 
   ];
+
+ 
+
+
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   selectedRowIndex: any;
@@ -48,13 +54,30 @@ export class InterviewroundsmasterComponent implements OnInit {
     }
   }
 
+ 
+
   add() {
-    this.router.navigate(['/interviewroundsmasteradd', "", false, "add"]);
+    this.interviewroundsmasteredit =[];
+    const int: InterviewroundsMaster = new InterviewroundsMaster();
+    this.interviewroundsmasteredit[0] = int;
+    this.router.navigateByUrl('/interviewroundsmasteradd', { state: this.interviewroundsmasteredit });
   }
 
+
   selectedrow(row: any) {
-    this.router.navigate(['/interviewroundsmasteradd', row.name, row.status, "update"]);
+    this.interviewroundsmasteredit =[];
+    this.interviewroundsmasteredit = this.interviewrounds.filter((elem: any) => elem.id === row.id)
+    this.interviewroundsmasteredit[0].save = "update"
+    this.router.navigateByUrl('/interviewroundsmasteradd', { state: this.interviewroundsmasteredit });
   }
+  selectedrow1(row: any) {
+    this.interviewroundsmasteredit =[];
+    this.interviewroundsmasteredit = this.interviewrounds.filter((elem: any) => elem.id === row.id)
+    this.interviewroundsmasteredit[0].save = "view"
+    this.router.navigateByUrl('/interviewroundsmasteradd', { state: this.interviewroundsmasteredit });
+  }
+
+
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;

@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { UserroleMaster } from '../model/userrolemaster';
+import { UserrolemasterService } from '../service/userrolemaster.service';
 
 @Component({
   selector: 'app-userrolemaster',
@@ -14,27 +15,28 @@ import { UserroleMaster } from '../model/userrolemaster';
 export class UserrolemasterComponent implements OnInit {
   @ViewChild('search') searchElement!: ElementRef;
   @ViewChild('name') someRef!: MatSelect;
-  displayedColumns: string[] = ['code', 'rolename', 'empname', 'status', 'tools'];
+  displayedColumns: string[] = ['sno', 'code', 'rolename', 'empname', 'status', 'tools'];
   dataSource!: MatTableDataSource<UserroleMaster>;
- 
-  userrole: UserroleMaster[] = [
-    { code: 'R003', rolename: 'HR - Recruiter', empname: 'gopinath',rolecode:'ROO3-HR-Recruiter',username:'12345679455',password:'133',status: true },
-    { code: 'R019', rolename: 'Service Head', empname: 'rajeswari',rolecode:'ROO3-HR-Recruiter',username:'12345679455',password:'133',status: true },
-    { code: 'R007', rolename: 'Junior Developer', empname: 'rizwana',rolecode:'ROO3-HR-Recruiter',username:'12345679455',password:'133',status: false },
-  ];
- 
-
+  userroleview: UserroleMaster[] = [];
+  userroleedit: UserroleMaster[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  view: boolean = true;
-  constructor(public router: Router) { }
+  constructor(public router: Router, private service: UserrolemasterService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.searchElement.nativeElement.focus();
     }, 0);
-    this.dataSource = new MatTableDataSource(this.userrole);
-    // this.dataSource1= new MatTableDataSource(this.userrole1); 
+    this.view();
+  }
+  view() {
+    this.service.view().then(data => {
+      debugger;
+      this.userroleview = data.result;
+      this.dataSource = new MatTableDataSource(this.userroleview);
+    }, err => {
+      alert(err);
+    });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -45,15 +47,14 @@ export class UserrolemasterComponent implements OnInit {
 
   }
   add() {
-
-    this.router.navigate(['/userrolemasteradd', '', '', '', '', '', '', false, "add"]);
+    const user: UserroleMaster = new UserroleMaster();
+    this.userroleedit[0] = user;
+    this.router.navigateByUrl('/userrolemasteradd', { state: this.userroleedit });
   }
   EditMethod(row: any) {
-    debugger
-    //   console.log(row)
-    this.router.navigate(['/userrolemasteradd', row.empname, row.code, row.rolename, row.rolecode, row.username, row.password, row.status, "update"]);
+    this.userroleedit = this.userroleview.filter((elem: any) => elem.id === row.id)
+    this.userroleedit[0].save = "update"
+    this.router.navigateByUrl('/userrolemasteradd', { state: this.userroleedit });
+
   }
-
-
-
 }

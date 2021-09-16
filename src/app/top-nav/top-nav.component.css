@@ -1,10 +1,15 @@
 .mat-toolbar.mat-primary {
     background: #32c3ca !important;
 }
-.material-icons{
-  font-family: 'Material Icons' !important;
+
+.material-icons {
+    font-family: 'Material Icons' !important;
 }
+
+
 /* .content {z-index:20 !important;} */
+
+
 /* .nav {font-size:0.75em; width:210px; z-index:999999;}
 .nav ul {margin:0px; padding:0px; z-index:999999;}
 .nav li {list-style: none; z-index:999999;} 
@@ -24,7 +29,8 @@
 
 
 /* top navigation */
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -32,13 +38,15 @@
     font-family: 'Poppins', sans-serif;
     z-index: 50;
     position: relative;
-  }
-  .wrapper{
+}
+
+.wrapper {
     background: #378a8a;
     position: sticky;
     width: 100%;
-  }
-  .wrapper nav{
+}
+
+.wrapper nav {
     position: relative;
     display: flex;
     max-width: calc(100% - 200px);
@@ -46,58 +54,69 @@
     height: 70px;
     align-items: center;
     justify-content: space-between;
-  }
-  nav .content{
-    z-index:0 !important;
+}
+
+nav .content {
+    z-index: 0 !important;
     display: flex;
     align-items: center;
-  }
-  nav .content .links{
+}
+
+nav .content .links {
     margin-left: 80px;
     display: flex;
-  }
-  .content .logo a{
+}
+
+.content .logo a {
     color: #fff;
     font-size: 30px;
     font-weight: 600;
-  }
-  .content .links li{
+}
+
+.content .links li {
     list-style: none;
     line-height: 70px;
-  }
-  .content .links li a,
-  .content .links li label{
+}
+
+.content .links li a,
+.content .links li label {
     color: white;
     font-size: 18px;
     font-weight: 500;
     padding: 9px 17px;
     border-radius: 5px;
     transition: all 0.1s ease;
-  }
-  .content .links li label{
+}
+
+.content .links li label {
     display: none;
-  }
-  .content .links li a:hover,
-  .content .links li label:hover{
+}
+
+.content .links li a:hover,
+.content .links li label:hover {
     background: #019e9e;
     color: black;
-  }
-  .wrapper .search-icon,
-  .wrapper .menu-icon{
+}
+
+.wrapper .search-icon,
+.wrapper .menu-icon {
     color: #fff;
     font-size: 18px;
     cursor: pointer;
     line-height: 70px;
     width: 70px;
     text-align: center;
-  }
-  .wrapper .menu-icon{
+}
+
+.wrapper .menu-icon {
     display: none;
-  }
-  .wrapper input[type="checkbox"]{
+}
+
+.wrapper input[type="checkbox"] {
     display: none;
-  }
-  .content .links ul{
+}
+
+.content .links ul {
     width: max-content;
     position: absolute;
     background: rgb(202, 223, 230);
@@ -106,129 +125,137 @@
     opacity: 0;
     visibility: hidden;
     transition: all 0.1s ease;
-  }
-  .content .links li:hover > ul{
+}
+
+.content .links li:hover>ul {
     top: 70px;
     opacity: 1;
     visibility: visible;
     transition: all 0.1s ease;
-  }
-  .content .links ul li a{
+}
+
+.content .links ul li a {
     display: block;
     width: 100%;
     line-height: 30px;
     border-radius: 0px !important;
-  }
-  .content .links ul ul{
+}
+
+.content .links ul ul {
     position: absolute;
     top: 0;
     right: calc(-100% + 8px);
-  }
-  .content .links ul li{
+}
+
+.content .links ul li {
     position: relative;
-  }
-  .content .links ul li:hover ul{
+}
+
+.content .links ul li:hover ul {
     top: 0;
-  }
-  @media screen and (max-width: 1250px){
-    .wrapper nav{
-      max-width: 100%;
-      padding: 0 20px;
+}
+
+@media screen and (max-width: 1250px) {
+    .wrapper nav {
+        max-width: 100%;
+        padding: 0 20px;
     }
-    nav .content .links{
-      margin-left: 30px;
+    nav .content .links {
+        margin-left: 30px;
     }
-    .content .links li a{
-      padding: 8px 13px;
+    .content .links li a {
+        padding: 8px 13px;
     }
-    .wrapper .search-box{
-      max-width: calc(100% - 100px);
+    .wrapper .search-box {
+        max-width: calc(100% - 100px);
     }
-    .wrapper .search-box input{
-      padding: 0 100px 0 15px;
+    .wrapper .search-box input {
+        padding: 0 100px 0 15px;
     }
-  }
-  @media screen and (max-width: 900px){
-    .wrapper .menu-icon{
-      display: block;
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper .menu-icon {
+        display: block;
     }
-    .wrapper #show-menu:checked ~ .menu-icon i::before{
-      content: "\f00d";
+    .wrapper #show-menu:checked~.menu-icon i::before {
+        content: "\f00d";
     }
-    nav .content .links{
-      display: block;
-      position: fixed;
-      background: #05d8d8;
-      height: 100%;
-      width: 100%;
-      top: 70px;
-      left: -100%;
-      margin-left: 0;
-      max-width: 350px;
-      overflow-y: auto;
-      padding-bottom: 100px;
-      transition: all 0.1s ease;
+    nav .content .links {
+        display: block;
+        position: fixed;
+        background: #05d8d8;
+        height: 100%;
+        width: 100%;
+        top: 70px;
+        left: -100%;
+        margin-left: 0;
+        max-width: 350px;
+        overflow-y: auto;
+        padding-bottom: 100px;
+        transition: all 0.1s ease;
     }
-    nav #show-menu:checked ~ .content .links{
-      left: 0%;
+    nav #show-menu:checked~.content .links {
+        left: 0%;
     }
-    .content .links li{
-      margin: 15px 20px;
+    .content .links li {
+        margin: 15px 20px;
     }
     .content .links li a,
-    .content .links li label{
-      line-height: 40px;
-      font-size: 20px;
-      display: block;
-      padding: 8px 18px;
-      cursor: pointer;
+    .content .links li label {
+        line-height: 40px;
+        font-size: 20px;
+        display: block;
+        padding: 8px 18px;
+        cursor: pointer;
     }
-    .content .links li a.desktop-link{
-      display: block;
+    .content .links li a.desktop-link {
+        display: block;
     }
-
     .content .links ul,
-    .content .links ul ul{
-      position: static;
-      opacity: 1;
-      visibility: visible;
-      background: none;
-      max-height: 0px;
-      overflow: hidden;
+    .content .links ul ul {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        background: none;
+        max-height: 0px;
+        overflow: hidden;
     }
-    .content .links #show-features:checked ~ ul,
-    .content .links #show-services:checked ~ ul,
-    .content .links #show-items:checked ~ ul{
-      max-height: 100vh;
+    .content .links #show-features:checked~ul,
+    .content .links #show-services:checked~ul,
+    .content .links #show-items:checked~ul {
+        max-height: 100vh;
     }
-    .content .links ul li{
-      margin: 7px 20px;
+    .content .links ul li {
+        margin: 7px 20px;
     }
-    .content .links ul li a{
-      font-size: 18px;
-      line-height: 30px;
-      border-radius: 5px!important;
+    .content .links ul li a {
+        font-size: 18px;
+        line-height: 30px;
+        border-radius: 5px!important;
     }
-  }
-  @media screen and (max-width: 400px){
-    .wrapper nav{
-      padding: 0 10px;
+}
+
+@media screen and (max-width: 400px) {
+    .wrapper nav {
+        padding: 0 10px;
     }
-    .content .logo a{
-      font-size: 27px;
+    .content .logo a {
+        font-size: 27px;
     }
-    .wrapper .search-box{
-      max-width: calc(100% - 70px);
+    .wrapper .search-box {
+        max-width: calc(100% - 70px);
     }
-    .wrapper .search-box .go-icon{
-      width: 30px;
-      right: 0;
+    .wrapper .search-box .go-icon {
+        width: 30px;
+        right: 0;
     }
-    .wrapper .search-box input{
-      padding-right: 30px;
+    .wrapper .search-box input {
+        padding-right: 30px;
     }
-  }
-  .dummy-text{
+}
+
+.dummy-text {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -237,15 +264,172 @@
     padding: 0 20px;
     text-align: center;
     transform: translate(-50%, -50%);
-  }
-  .dummy-text h2{
+}
+
+.dummy-text h2 {
     font-size: 45px;
     margin: 5px 0;
-  }  
-
-  /* top navigation */
-  ::ng-deep .mat-checkbox-checked .mat-checkbox-background,
-::ng-deep .mat-checkbox-indeterminate .mat-checkbox-background {
-background-color: #1d38cf !important;
-
 }
+
+
+/* top navigation */
+
+ ::ng-deep .mat-checkbox-checked .mat-checkbox-background,
+::ng-deep .mat-checkbox-indeterminate .mat-checkbox-background {
+    background-color: #1d38cf !important;
+}
+
+mat-menu {
+    display: none
+}
+
+.mat-menu-panel {
+    min-width: 112px;
+    max-width: 280px;
+    overflow: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    max-height: calc(100vh - 48px);
+    border-radius: 4px;
+    outline: 0;
+    min-height: 64px
+}
+
+.mat-menu-panel.ng-animating {
+    pointer-events: none
+}
+
+.cdk-high-contrast-active .mat-menu-panel {
+    outline: solid 1px
+}
+
+.mat-menu-content:not(:empty) {
+    padding-top: 8px;
+    padding-bottom: 8px
+}
+
+.mat-menu-item {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    line-height: 48px;
+    height: 48px;
+    padding: 0 16px;
+    text-align: left;
+    text-decoration: none;
+    max-width: 100%;
+    position: relative
+}
+
+.mat-menu-item::-moz-focus-inner {
+    border: 0
+}
+
+.mat-menu-item[disabled] {
+    cursor: default
+}
+
+[dir=rtl] .mat-menu-item {
+    text-align: right
+}
+
+.mat-menu-item .mat-icon {
+    margin-right: 16px;
+    vertical-align: middle
+}
+
+.mat-menu-item .mat-icon svg {
+    vertical-align: top
+}
+
+[dir=rtl] .mat-menu-item .mat-icon {
+    margin-left: 16px;
+    margin-right: 0
+}
+
+.mat-menu-item[disabled] {
+    pointer-events: none
+}
+
+.cdk-high-contrast-active .mat-menu-item {
+    margin-top: 1px
+}
+
+.cdk-high-contrast-active .mat-menu-item.cdk-program-focused,
+.cdk-high-contrast-active .mat-menu-item.cdk-keyboard-focused,
+.cdk-high-contrast-active .mat-menu-item-highlighted {
+    outline: dotted 1px
+}
+
+.mat-menu-item-submenu-trigger {
+    padding-right: 32px
+}
+
+.mat-menu-item-submenu-trigger::after {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-color: transparent transparent transparent currentColor;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%)
+}
+
+[dir=rtl] .mat-menu-item-submenu-trigger {
+    padding-right: 16px;
+    padding-left: 32px
+}
+
+[dir=rtl] .mat-menu-item-submenu-trigger::after {
+    right: auto;
+    left: 16px;
+    transform: rotateY(180deg) translateY(-50%)
+}
+
+button.mat-menu-item {
+    width: 100%
+}
+
+.mat-menu-item .mat-menu-ripple {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    pointer-events: none
+}
+
+
+/* img {
+    margin-left: 80mm;
+    margin-right: 80mm;
+    margin-top: 1mm;
+    max-height: 175.0mm;
+    min-height: 175.0mm;
+    max-width: 280.5mm;
+    min-width: 280.5mm;
+}
+
+.h {
+    margin-left: 80mm;
+    margin-right: 80mm;
+    max-height: 115.5mm;
+    min-height: 115.5mm;
+    max-width: 250.5mm;
+    min-width: 250.5mm;
+    font-weight: bold;
+    font-size: 80px;
+    text-align: center;
+} */

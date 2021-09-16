@@ -36,5 +36,5 @@ export class Clientypeselect {
 }
 export class Feedbackentryadded {
     feedbackentry: string = "";
-    feedbackdate: string = "";
+    feedbackdate: number = 1;
 }
