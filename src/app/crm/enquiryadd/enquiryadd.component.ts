@@ -227,7 +227,7 @@ export class EnquiryaddComponent implements OnInit {
 
   clienttypechange(event: any) {
 
-    debugger;
+
     if (event.value === 0) {
       this.assign = false;
       this.account = true;
@@ -241,7 +241,7 @@ export class EnquiryaddComponent implements OnInit {
  
 
   add(): void {
-    debugger;
+  
     this.feedback.push({ feedback: '', feedbackfollowupdate: '' });
     this.dataSource.data = this.feedback;
   }
@@ -249,12 +249,12 @@ export class EnquiryaddComponent implements OnInit {
     this.selectedRow = index;
   }
   toggleSelection(event: any, i: any) {
-    debugger;
+
     this.checkboxes[i] = event.target.checked;
 
   }
   delete() {
-    debugger;
+    
     
     for (let i = this.checkboxes.length - 1; i >= 0; i--) {
       // If selected, then delete that row.

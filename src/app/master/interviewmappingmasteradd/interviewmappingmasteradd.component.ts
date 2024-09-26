@@ -15,7 +15,7 @@ export class InterviewmappingmasteraddComponent implements OnInit {
   formgroup!: FormGroup;
   @ViewChild('someRef') someRef!: MatSelect;
   status: string = "InActive";
-  statuscolor: string = "rgb(249 125 125)";
+  statuscolor: string = "rgb(153 153 153)";
   departmentselectedit: Departmentselect[] = []
   roundselectedit: Roundselect[] = []
   employeeselectedit: Employeeselect[] = []

@@ -87,7 +87,7 @@
             <mat-select formControlName="assigntodepartment">
                 <mat-option *ngFor="let assigntodepa of assigntodepartmentselect"
                     [value]="assigntodepa.assigntodepartmentcode">
-                    {{assigntodepa.assigntodepartment}}
+                    <!-- {{assigntodepa.assigntodepartment}} -->
                 </mat-option>
 
             </mat-select>
@@ -147,11 +147,7 @@
                 <mat-form-field class="example-full-width" appearance="outline"
                     style="margin-top: -10px;margin-left: -100px;">
                     <input matInput [value]="clienttypeadd" readonly>
-                    <!-- <mat-select #name formControlName="clienttype">
-                        <mat-option *ngFor="let clienttypes of clientypeselect" [value]="clienttypes.clienttypecode">
-                            {{clienttypes.clienttype}}
-                        </mat-option>
-                    </mat-select> -->
+                  
                 </mat-form-field>
             </div>
         </div>
@@ -166,12 +162,7 @@
                     style="margin-top: -10px;margin-left: -100px;">
 
                     <input matInput [value]="calltypeadd" readonly>
-                    <!-- <mat-select #name formControlName="calltype">
-                        <mat-option *ngFor="let calltypes of calltypeselect" [value]="calltypes.calltypecode">
-                            {{calltypes.calltype}}
-                        </mat-option>
-
-                    </mat-select> -->
+                  
                 </mat-form-field>
             </div>
         </div>
@@ -186,10 +177,7 @@
                     style="margin-top: -10px;margin-left: -100px;">
 
                     <input matInput [value]="dateadd" readonly>
-                    <!-- <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Date" readonly>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker> -->
-
+                  
                 </mat-form-field>
             </div>
         </div>
@@ -202,7 +190,7 @@
                 <mat-form-field class="example-full-width" appearance="outline"
                     style="margin-top: -10px;margin-left: -100px;">
 
-                    <!-- <input matInput formControlName="client"> -->
+                 
                     <input matInput [value]="clientadd" readonly>
                 </mat-form-field>
             </div>
@@ -215,7 +203,7 @@
                 <mat-form-field class="example-full-width" appearance="outline"
                     style="margin-top: -10px;margin-left: -100px;">
 
-                    <!-- <input matInput formControlName="address"> -->
+                 
                     <input matInput [value]="addressadd" readonly>
                 </mat-form-field>
             </div>
@@ -228,7 +216,7 @@
                 <mat-form-field class="example-full-width" appearance="outline"
                     style="margin-top: -10px;margin-left: -100px;">
 
-                    <!-- <input matInput formControlName="city"> -->
+                    
                     <input matInput [value]="cityadd" readonly>
                 </mat-form-field>
             </div>
@@ -241,7 +229,7 @@
                 <mat-form-field class="example-full-width" appearance="outline"
                     style="margin-top: -10px;margin-left: -100px;">
 
-                    <!-- <input matInput formControlName="clientname"> -->
+                 
                     <input matInput [value]="clientnameadd" readonly>
                 </mat-form-field>
             </div>
@@ -254,7 +242,7 @@
                 <mat-form-field class="example-full-width" appearance="outline"
                     style="margin-top: -10px;margin-left: -100px;">
 
-                    <!-- <input matInput formControlName="designation"> -->
+                   
                     <input matInput [value]="designationadd" readonly>
                 </mat-form-field>
             </div>
@@ -267,7 +255,7 @@
                 <mat-form-field class="example-full-width" appearance="outline"
                     style="margin-top: -10px;margin-left: -100px;">
 
-                    <!-- <input matInput formControlName="contactnumber"> -->
+                 
                     <input matInput [value]="contactnumberadd" readonly>
                 </mat-form-field>
             </div>
@@ -280,7 +268,7 @@
                 <mat-form-field class="example-full-width" appearance="outline"
                     style="margin-top: -10px;margin-left: -100px;">
 
-                    <!-- <input matInput formControlName="mailid"> -->
+                    
                     <input matInput [value]="mailidadd" readonly>
                 </mat-form-field>
             </div>
@@ -293,7 +281,7 @@
                 <mat-form-field class="example-full-width" appearance="outline"
                     style="margin-top: -10px;margin-left: -100px;">
 
-                    <!-- <input matInput formControlName="service"> -->
+                    
                     <input matInput [value]="serviceadd" readonly>
                 </mat-form-field>
             </div>
@@ -306,7 +294,7 @@
                 <mat-form-field class="example-full-width" appearance="outline"
                     style="margin-top: -10px;margin-left: -100px;">
 
-                    <!-- <input matInput formControlName="feedback"> -->
+                    
                     <input matInput [value]="feedbackadd" readonly>
                 </mat-form-field>
             </div>
@@ -323,10 +311,7 @@
                     style="margin-top: -10px;margin-left: -100px;">
 
                     <input matInput [value]="followupdateadd" readonly>
-                    <!-- <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Date" readonly>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker> -->
-
+                  
                 </mat-form-field>
             </div>
         </div>
@@ -334,45 +319,31 @@
 
         <mat-form-field class="example-full-width" appearance="outline" *ngIf="assign">
             <mat-label style="font-weight: bold;color: #464545;">Assign To Department</mat-label>
-            <!-- <mat-select formControlName="assigntodepartment" readonly> -->
-            <!-- <mat-option *ngFor="let assigntodepa of assigntodepartmentselect"
-                    [value]="assigntodepa.assigntodepartmentcode">
-                    {{assigntodepa.assigntodepartment}}
-                </mat-option> -->
+          
             <input matInput [value]="assigntodepartmentadd" readonly>
-            <!-- </mat-select> -->
+            
         </mat-form-field>
 
         <mat-form-field class="example-full-width" appearance="outline" *ngIf="assign">
             <mat-label style="font-weight: bold;color: #464545;">Assingn To Employee</mat-label>
-            <!-- <mat-select formControlName="assigntoemployee"> -->
-            <!-- <mat-option *ngFor="let assigntoemployees of assigntoemployeeselect"
-                    [value]="assigntoemployees.assignmentemployeecode">
-                    {{assigntoemployees.assigntoemployee}}
-                </mat-option> -->
+           
             <input matInput [value]="assignemployeeadd" readonly>
-            <!-- </mat-select> -->
+           
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline" *ngIf="account">
             <mat-label style="font-weight: bold;color: #464545;">Account Manager Department</mat-label>
-            <!-- <input matInput #name formControlName="accountmanagerdepartment"> -->
+            
             <input matInput [value]="accountmanagerdepartmentadd" readonly>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline" *ngIf="account">
 
-            <!-- <input matInput #name formControlName="accountmanager"> -->
+            
             <input matInput [value]="accountmanageradd" readonly>
         </mat-form-field>
 
     </form>
 
-    <!-- <div style="align-self: center;margin-top: 100px;" >
-        <button mat-button type="submit" style="background-color: #5ac6c6;" (click)="saveform()">Save</button>
-    </div> -->
-
-    <!-- <div style="align-self: center;margin-top: 100px;" >
-        <button mat-button type="submit" style="background-color: #5ac6c6;" (click)="update()">Update</button>
-    </div> -->
+  
 
     <div flex *ngIf="leadboolean">
         <div style="text-align: center;">
@@ -418,11 +389,7 @@
             <ng-container matColumnDef="check">
                 <th mat-sort-header mat-header-cell *matHeaderCellDef style="font-weight: bold;font-size: medium;
                     color: #383131;">
-                    <!-- <mat-checkbox (change)="$event ? masterToggle() : null"
-                            [checked]="selection.hasValue() && isAllSelected()"
-                            [indeterminate]="selection.hasValue() && !isAllSelected()">
-                        </mat-checkbox> -->
-                    #
+                   
                 </th>
                 <td mat-cell *matCellDef="let element;">
                     <mat-checkbox (click)="$event.stopPropagation()"

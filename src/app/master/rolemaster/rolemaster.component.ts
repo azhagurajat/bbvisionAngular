@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { RoleMaster } from '../model/rolemaster';
-// v
+import { Checked, RoleMaster } from '../model/rolemaster';
+
 @Component({
   selector: 'app-rolemaster',
   templateUrl: './rolemaster.component.html',
@@ -12,21 +12,58 @@ import { RoleMaster } from '../model/rolemaster';
 })
 export class RolemasterComponent implements OnInit {
   @ViewChild('search') searchElement!: ElementRef;
-  @ViewChild('name') nameElement!: ElementRef;
-  displayedColumns: string[] = ['name', 'name1', 'status', 'tools'];
+  @ViewChild('rname') nameElement!: ElementRef;
+  displayedColumns: string[] = ['rname', 'rcode', 'status', 'tools', 'tools1'];
   dataSource!: MatTableDataSource<RoleMaster>;
   role: RoleMaster[] = [
-    { name: 'Intreviewer', name1: 'ROLE-001	', status: true },
-    { name: 'Recruiter', name1: 'ROLE-002	', status: true },
-    { name: 'Admin', name1: 'ROLE-003	', status: true },
-    { name: 'Technical', name1: 'ROLE-004	', status: true },
+    {
+      rname: 'Interviewer', rcode: 'ROLE-001	', status: true,  color: 'rgb(137 185 236)', width: '40% ', button: 'View rolemapping', check: [{
+        headingname: "Recruitment", check: [
+          { name: 'ApplicationForm', view: false, edit: true, All: false },
+          { name: 'CTC Approval', view: false, edit: true, All: false }]
+      },
+      {
+        headingname: "Master", check: [
+          { name: 'Department Master', view: false, edit: true, All: false },
+          { name: 'Division Master', view: false, edit: true, All: false }]
+      }
+      ]
+    },
+
+
+    {
+      rname: 'Admin', rcode: 'ROLE-002	', status: false,  color: 'rgb(202 157 193)', width: '40%', button: 'RoleMapping', check: [{
+        headingname: "Payroll", check: [
+          { name: 'Attendance', view: true, edit: true, All: true },
+          { name: 'Holidays', view: true, edit: true, All: true }]
+      },
+      {
+        headingname: "Staff", check: [
+          { name: 'HOD', view: true, edit: true, All: true },
+          { name: 'Birthday List', view: true, edit: true, All: true }]
+      }
+      ]
+    },
+
+
   ];
+
+
+  //checked: string[] = ['Application', 'Interview Feedback Form'];
+
+
+
+
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   selectedRowIndex: any;
-  constructor(public router: Router) { }
+  constructor(public router: Router) { 
+    debugger;
+  }
 
   ngOnInit(): void {
+    console.log(JSON.stringify(this.role));
     setTimeout(() => {
       this.searchElement.nativeElement.focus();
     }, 0);
@@ -45,7 +82,10 @@ export class RolemasterComponent implements OnInit {
   }
 
   selectedrow(row: any) {
-    this.router.navigate(['/rolemasteradd', row.name, row.name1, row.status, "update"]);
+    this.router.navigate(['/rolemasteradd', row.rname, row.rcode, row.status, "update"]);
+  }
+  selectedrow1(row: any) {
+    this.router.navigate(['/rolemasteradd', row.rname, row.rcode, row.status, "view"]);
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

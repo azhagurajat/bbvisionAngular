@@ -1,8 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { ActivatedRoute } from '@angular/router';
-import { AssetmasterMapping, Assetstypeselect } from '../model/assetsmaster';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from 'src/app/common/common.service';
+import { Assetmaster, Assetstypeselect } from '../model/assetsmaster';
+import { LoginPojo } from '../model/login';
+import { AssetmasterService } from '../service/assetmaster.service';
 
 @Component({
   selector: 'app-assetmasteradds',
@@ -11,89 +14,48 @@ import { AssetmasterMapping, Assetstypeselect } from '../model/assetsmaster';
 })
 export class AssetmasteraddsComponent implements OnInit {
   formgroup!: FormGroup;
-  asset: AssetmasterMapping = new AssetmasterMapping()
-  assets: Assetstypeselect[] = [];
-  asset123: any;
-  prefixcode: any;
-  assets1: AssetmasterMapping[] = [
-
-    { assets: 'monitor', assetstype: 'It asset', prefixcode: 'mon', status: true },
-    { assets: 'keyboard', assetstype: 'It', prefixcode: 'key', status: true },
-    { assets: 'cpu', assetstype: 'asset', prefixcode: 'cpu', status: false },
-  ];
+  asset: Assetmaster = new Assetmaster();
+  status: string = "InActive";
+  statuscolor: string = "rgb(153 153 153)";
   @ViewChild('name') searchElement!: ElementRef;
-  // status: string = "InActive";
-  // statuscolor: string = "rgb(249 125 125)";
-  assetstypeselect: Assetstypeselect[] = [
-    { assetstypecode: 0, assetstype: 'It asset' },
-    { assetstypecode: 1, assetstype: 'It' },
-    { assetstypecode: 2, assetstype: 'asset' }
-  ];
-  assetselect: any
-  sub: any;
-  save: any;
+  assetstypeselectedit: Assetstypeselect[] = [];
   savedata: boolean = true;
-  status: any;
-  statuscolor: any;
-  assetstype12: any;
-  assetsname: any;
-  constructor(private route: ActivatedRoute, private fb: FormBuilder,) { }
+  assetstypeselect: Assetstypeselect[] = [
+    { assetstypename: 'It asset' },
+    { assetstypename: 'NonIt Asset' }
+  ];
+  login: LoginPojo = new LoginPojo();
+  constructor(private router: Router, private service: AssetmasterService, private commonservice: CommonService, private fb: FormBuilder,) { }
 
-  kkk: any;
   ngOnInit(): void {
-    debugger;
-    this.sub = this.route.paramMap.subscribe(params => {
-      debugger;
-      this.assetsname = params.get('id');
-      this.prefixcode = params.get('id1');
-      this.assetstype12 = params.get('id2');
-      this.status = params.get('id3');
-      this.save = params.get('save');
-      console.log(params);
-      debugger;
-      this.assets = this.assetstypeselect.filter(
-        book => book.assetstype === this.assetstype12);
-    });
-    debugger;
-    // this.assetstypeselect = this.assets;
 
-    debugger;
-    this.asset.assets = this.assetsname;
-    this.asset.prefixcode = this.prefixcode;
-    this.asset.assetstype = this.assetstype12;
-    this.asset.status = this.status;
-
-    if (this.save === "add") {
+    this.asset = history.state[0];
+    if (this.asset.save === "add") {
       this.savedata = true;
     } else {
       this.savedata = false;
     }
-
+    this.assetstypeselectedit = this.assetstypeselect.filter(
+      as => as.assetstypename === this.asset.assettypename
+    );
     this.formgroup = this.fb.group({
-      asset: [this.asset.assets, [Validators.required]],
-      prefix: [this.asset.prefixcode, [Validators.required]],
-      assettype: [this.asset.assetstype, [Validators.required]],
+      name: [this.asset.name, [Validators.required]],
+      prefixcode: [this.asset.prefixcode, [Validators.required]],
+      assettypename: [this.asset.assettypename, [Validators.required]],
       status: [this.asset.status, [Validators.required]]
-
-
-    })
-    debugger;
-    if (this.assets.length > 0) {
-      this.formgroup.controls.assettype.setValue(this.assets[0].assetstypecode);
+    });
+    if (this.assetstypeselectedit.length > 0) {
+      this.formgroup.controls.assettypename.setValue(this.assetstypeselectedit[0].assetstypename);
     } else {
-      this.formgroup.controls.assettype.setValue(this.assetstypeselect[0].assetstypecode);
+      this.formgroup.controls.assettypename.setValue(this.assetstypeselect[0].assetstypename);
     }
-    console.log(this.formgroup.value)
     this.ontoggledefault();
     setTimeout(() => {
       this.searchElement.nativeElement.focus();
     }, 0);
   }
-  AssetmasterMapping(AssetmasterMapping: any, arg1: boolean): any {
-    throw new Error('Method not implemented.');
-  }
+
   ontoggledefault() {
-    debugger;
     if (this.formgroup.value.status === "true") {
       this.status = "Active";
       this.statuscolor = "#70ce70";
@@ -116,12 +78,58 @@ export class AssetmasteraddsComponent implements OnInit {
     }
 
   }
-  saveform(){
-
+  saveform() {
+    var sss = sessionStorage.getItem('logindet');
+    if (sss) {
+      this.login = JSON.parse(sss);
+    }
+    if (this.formgroup) {
+      this.asset.name = this.formgroup.value.name;
+      this.asset.status = this.formgroup.value.status;
+      this.asset.created_by = this.login.empcode;
+      this.asset.assettypename = this.formgroup.value.assettypename;
+      this.asset.prefixcode = this.formgroup.value.prefixcode;
+      const save = JSON.stringify(this.asset);
+      this.service.save(save).then(data => {
+        if (data.result[0].status === true) {
+          this.commonservice.message("Asset Master Insert", data.result[0].message, "info");
+          this.router.navigate(['../assetmaster']);
+        } else {
+          this.commonservice.message("Asset Master Insert", data.result[0].message, "error");
+        }
+      }, err => {
+        this.commonservice.message("Error", err, "error");
+      });
+    } else {
+      this.commonservice.message("Warning", "Form Invalid", "warn");
+    }
   }
 
-  update(){
-    
+  update() {
+    var sss = sessionStorage.getItem('logindet');
+    if (sss) {
+      this.login = JSON.parse(sss);
+    }
+    if (this.formgroup) {
+      this.asset.name = this.formgroup.value.name;
+      this.asset.status = this.formgroup.value.status;
+      this.asset.modified_by = this.login.empcode;
+      this.asset.assettypename = this.formgroup.value.assettypename;
+      this.asset.prefixcode = this.formgroup.value.prefixcode;
+      const save = JSON.stringify(this.asset);
+      this.service.update(save).then(data => {
+        if (data.result[0].status === true) {
+          this.commonservice.message("Asset Master Update", data.result[0].message, "info");
+          this.router.navigate(['../assetmaster']);
+        } else {
+          this.commonservice.message("Asset Master Update", data.result[0].message, "error");
+        }
+      }, err => {
+        this.commonservice.message("Error", err, "error");
+      });
+    } else {
+      this.commonservice.message("Warning", "Form Invalid", "warn");
+    }
   }
 
 }

@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ResourceMaster } from '../model/resourcemaster';
+import { ResourcemasterService } from '../service/resourcemaster.service';
 
 
 @Component({
@@ -14,33 +15,31 @@ import { ResourceMaster } from '../model/resourcemaster';
 export class ResourcemasterComponent implements OnInit {
   @ViewChild('search') searchElement!: ElementRef;
   @ViewChild('name') nameElement!: ElementRef;
-  displayedColumns: string[] = ['name', 'status', 'tools'];
+  displayedColumns: string[] = ['sno', 'name', 'status', 'tools'];
   dataSource!: MatTableDataSource<ResourceMaster>;
-  resource: ResourceMaster[] = [
-    { name: 'Nakuri', status: true },
-    { name: 'Consultant', status: false },
-    { name: 'Walk in	', status: false },
-
-    { name: 'Facebook', status: false },
-
-    { name: 'Indeed', status: false },
-    { name: 'Linkedin', status: false },
-    { name: 'Website', status: false },
-    { name: 'Referal	', status: false },
-
-
-  ];
+  resourceview: ResourceMaster[] = [];
+  resourceedit: ResourceMaster[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   selectedRowIndex: any;
-  constructor(public router: Router) { }
+  constructor(public router: Router, private service: ResourcemasterService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.searchElement.nativeElement.focus();
     }, 0);
-    this.dataSource = new MatTableDataSource(this.resource);
+    this.view();
   }
+
+  view() {
+    this.service.view().then(data => {
+      this.resourceview = data.result;
+      this.dataSource = new MatTableDataSource(this.resourceview);
+    }, err => {
+      alert(err);
+    });
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -50,11 +49,15 @@ export class ResourcemasterComponent implements OnInit {
   }
 
   add() {
-    this.router.navigate(['/resourcemasteradd', "", false, "add"]);
+    const call: ResourceMaster = new ResourceMaster();
+    this.resourceedit[0] = call;
+    this.router.navigateByUrl('/resourcemasteradd', { state: this.resourceedit });
   }
 
   selectedrow(row: any) {
-    this.router.navigate(['/resourcemasteradd', row.name, row.status, "update"]);
+    this.resourceedit = this.resourceview.filter((elem: any) => elem.id === row.id)
+    this.resourceedit[0].save = "update"
+    this.router.navigateByUrl('/resourcemasteradd', { state: this.resourceedit });
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

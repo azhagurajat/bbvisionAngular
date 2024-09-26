@@ -1,15 +1,11 @@
-<button mat-mini-fab routerLink="../../../../questionmaster"
-    style="background-color: #5ac6c6;float: right;margin-right: 10px;">
+<button mat-mini-fab routerLink="../questionmaster" style="background-color: #5ac6c6;float: right;margin-right: 10px;">
     <mat-icon>arrow_back</mat-icon>
 </button>
 <div fxLayout="column">
     <div style="-webkit-align-items: center;" fxLayout="column">
-        <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;"
-            onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true'
-            id="_arrowdown" tabindex='0'>
+        <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;" onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true' id="_arrowdown" tabindex='0'>
     </div>
-    <form [formGroup]="formgroup" class="example-form" fxLayout="column" fxFlex="50"
-        style="-webkit-align-items: center;">
+    <form [formGroup]="formgroup" class="example-form" fxLayout="column" fxFlex="50" style="-webkit-align-items: center;">
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label style="font-weight: bold;color: #464545;">Question Name</mat-label>
             <input matInput #name id="name" formControlName="name">
@@ -24,7 +20,7 @@
         background-color: #f75a20;
         margin-top: 15px;" [style.backgroundColor]="statuscolor">{{status}}</mat-label>
     </form>
-    
+
     <div style="align-self: center;margin-top: 100px;" *ngIf="savedata">
         <button mat-button type="submit" style="background-color: #5ac6c6;" (click)="saveform()">Save</button>
     </div>

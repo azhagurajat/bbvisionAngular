@@ -8,7 +8,7 @@ const routes: Routes = [{ path: '', component: AssetmasterComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AssetmasterRoutingModule { }

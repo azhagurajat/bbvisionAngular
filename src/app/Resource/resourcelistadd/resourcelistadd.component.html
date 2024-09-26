@@ -1,0 +1,624 @@
+ <button mat-mini-fab routerLink="../resourcelist" style="background-color: #5ac6c6;float: right;margin-right: 10px;">
+    <mat-icon>arrow_back</mat-icon>
+</button>
+
+  <div fxLayout="column"  *ngIf="savedata">
+    <div style="-webkit-align-items: center;" fxLayout="column">
+        <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;"
+            onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true'
+            id="_arrowdown" tabindex='0'>
+    </div>
+
+    <form style="margin-left: 50px;" [formGroup]="formgroup" class="example-form" fxLayout="column" fxFlex="50">
+
+         <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Source
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                  
+                    <input matInput formControlName="source" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+
+     <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Consultant Name
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    
+                    <input matInput formControlName="consultant" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Date
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                  
+                    <input matInput formControlName="date" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    PostAppliedFor
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                  
+                    <input matInput formControlName="postappliedfor" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    First Name
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                   
+                    <input matInput formControlName="firstname" readonly>
+
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    LastName Name
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                
+                    <input matInput formControlName="lastname" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Mobile Number
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                  
+                    <input matInput formControlName="mobilenumber" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Whatsapp Number</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+               
+                    <input matInput formControlName="whatsappnumber" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">EmailiId </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="emailid" readonly>
+                 
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Aadhaar Number </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="adhaarnumber" readonly>
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Degree </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    
+                    <input matInput formControlName="degree" readonly>
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;"> Years Of Passout</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="yearsofpassout" readonly>
+                    
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Percentage </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                    <input matInput formControlName="percentage" readonly>
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Employee Status </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                    <input matInput formControlName="employeestatus" readonly>
+
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Expected CTC: </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="expectedctc" readonly>
+
+
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Current CTC: </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                    <input matInput formControlName="currentctc" readonly>
+
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Certification</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                    <input matInput formControlName="certification" readonly>
+
+                  
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Feedback</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="feedback" readonly>
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Interview Date</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="interviewdate" readonly>
+                   
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color: #464545;"> Remarks</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="remarks" readonly>
+                    
+                </mat-form-field>
+            </div>
+        </div> 
+
+
+
+
+    </form>
+
+
+
+
+
+</div>   
+
+
+<div fxLayout="column" *ngIf="!savedata">
+    <div style="-webkit-align-items: center;" fxLayout="column">
+        <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;"
+            onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true'
+            id="_arrowdown" tabindex='0'>
+    </div>
+
+    <form style="margin-left: 50px;" [formGroup]="formgroup" class="example-form" fxLayout="column" fxFlex="50">
+
+         <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Source
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                  
+                    <input matInput formControlName="source" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+
+     <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Consultant Name
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    
+                    <input matInput formControlName="consultant" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Date
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                  
+                    <input matInput formControlName="date" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    PostAppliedFor
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                  
+                    <input matInput formControlName="postappliedfor" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    First Name
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                   
+                    <input matInput formControlName="firstname" readonly>
+
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    LastName Name
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                
+                    <input matInput formControlName="lastname" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;-webkit-align-items: start;">
+                    Mobile Number
+                </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                  
+                    <input matInput formControlName="mobilenumber" readonly>
+
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Whatsapp Number</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+               
+                    <input matInput formControlName="whatsappnumber" readonly>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">EmailiId </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="emailid" readonly>
+                 
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Aadhaar Number </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="adhaarnumber" readonly>
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Degree </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    
+                    <input matInput formControlName="degree" readonly>
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;"> Years Of Passout</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="yearsofpassout" readonly>
+                    
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Percentage </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                    <input matInput formControlName="percentage" readonly>
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Employee Status </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                    <input matInput formControlName="employeestatus" readonly>
+
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Expected CTC: </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="expectedctc" readonly>
+
+
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Current CTC: </mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                    <input matInput formControlName="currentctc" readonly>
+
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Certification</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+                    <input matInput formControlName="certification" readonly>
+
+                  
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Feedback</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                   
+                    <mat-select  formControlName="feedback" (selectionChange)="interviewchange($event)">
+                        <mat-option *ngFor="let shedule of interview" [value]="shedule.interviewdatecode">
+                            {{shedule.interviewdate}}
+                        </mat-option>
+                    </mat-select>
+                   
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="100px"  *ngIf="unselect">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color:#464545;">Interview Date</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="interviewdate" >
+                   
+                   
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="100px">
+            <div fxFlex="10">
+                <mat-label style="font-weight: bold;color: #464545;"> Remarks</mat-label>
+            </div>
+            <div fxFlex="100">
+                <mat-form-field class="example-full-width" appearance="outline"
+                    style="margin-top: -10px;margin-left: -100px;">
+
+                    <input matInput formControlName="remarks" >
+                    
+                </mat-form-field>
+            </div>
+        </div> 
+
+
+
+
+    </form>
+
+
+
+    <div style="align-self: center;margin-top: 100px;" >
+        <button mat-button type="submit" style="background-color: #5ac6c6;" (click)="update()">Update</button>
+    </div>
+
+</div> 

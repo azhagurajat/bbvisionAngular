@@ -14,7 +14,7 @@ import { DatePipe, formatDate } from '@angular/common';
 import { LeaveTypeSave } from '../master/model/leaveform';
 import { LoginPojo } from '../master/model/login';
 import { DashboardService } from '../master/service/dashboard.service';
-
+//f
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -192,6 +192,7 @@ export class DashboardComponent implements OnInit {
   searchProject: string = "";
   searchstatus: string = "";
   searchdocstatus: string = "";
+  example: any;
   scheduled = [
     { name: 'Mr. Nice' },
     { name: 'Narco' },
@@ -375,17 +376,21 @@ export class DashboardComponent implements OnInit {
     this.dataSourceamc = this.amc;
   }
   async getleavetype() {
+    //azasdfasdfasdfasdf
+
 
     var sss = sessionStorage.getItem('logindet');
     if (sss) {
       this.login = JSON.parse(sss);
     }
-    await this.dashboardservice.getleavetype(this.login.empcode).then(data => {
-      console.log(data);
-      this.leavetype = data.leavetype;
-    }, err => {
-      this.nameservice.message("Leave_balance", err.message, "error");
-    });
+    if (sss) {
+      await this.dashboardservice.getleavetype(this.login.empcode).then(data => {
+        console.log(data);
+        this.leavetype = data.leavetype;
+      }, err => {
+        this.nameservice.message("Leave_balance", err.message, "error");
+      });
+    }
   }
   // onEventRender(info: any) {
   //   const tooltip = new Tooltip(info.el, {

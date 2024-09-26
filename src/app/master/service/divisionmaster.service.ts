@@ -12,11 +12,9 @@ export class DivisionmasterService {
     })
   };
   constructor(private http: HttpClient) {
-
-
   }
   save(save: any): Promise<any> {
-    const url = environment.API_URL + 'division_master/divisionmaster_submit.php';
+    const url = environment.API_URL + 'division_master/division_insert.php';
     return this.http.post(url, save, this.httpOptions).toPromise();
   }
 
@@ -26,7 +24,7 @@ export class DivisionmasterService {
   }
 
   update(update: any): Promise<any> {
-    const url = environment.API_URL + 'division_master/divisionmaster_update.php';
+    const url = environment.API_URL + 'division_master/division_update.php';
     return this.http.post(url, update, this.httpOptions).toPromise();
   }
 }

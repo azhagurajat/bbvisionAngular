@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { JobDescription } from '../model/jobdescription';
-
+import { JobdescriptionService } from '../service/jobdescription.service';
 @Component({
   selector: 'app-jobdescription',
   templateUrl: './jobdescription.component.html',
@@ -13,24 +13,34 @@ import { JobDescription } from '../model/jobdescription';
 export class JobdescriptionComponent implements OnInit {
   @ViewChild('search') searchElement!: ElementRef;
   @ViewChild('name') nameElement!: ElementRef;
-  displayedColumns: string[] = ['name', 'status', 'tools'];
+  displayedColumns: string[] = ['sno', 'name', 'status', 'tools'];
   dataSource!: MatTableDataSource<JobDescription>;
-  desc: JobDescription[] = [
-    { title: 'Senior Angular Developer', status: true },
-    { title: 'Trainee', status: false },
-  ];
+  jobdescview: JobDescription[] = [];
+  jobdescedit: JobDescription[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  selectedRowIndex: any;
-  constructor(public router: Router) { }
+  constructor(public router: Router, public service: JobdescriptionService) { }
 
 
   ngOnInit(): void {
     setTimeout(() => {
       this.searchElement.nativeElement.focus();
     }, 0);
-    this.dataSource = new MatTableDataSource(this.desc);
+    this.view();
   }
+
+  view() {
+    debugger;
+    this.service.view().then(data => {
+      debugger;
+      this.jobdescview = data.result;
+      this.dataSource = new MatTableDataSource(this.jobdescview);
+    }, err => {
+      debugger;
+      alert(err.error.text);
+    });
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -40,11 +50,15 @@ export class JobdescriptionComponent implements OnInit {
   }
 
   add() {
-    this.router.navigate(['/jobdescriptionadd', "", false, "add"]);
+    const desc: JobDescription = new JobDescription();
+    this.jobdescedit[0] = desc;
+    this.router.navigateByUrl('/jobdescriptionadd', { state: this.jobdescedit });
   }
 
   edittable(row: any) {
-    this.router.navigate(['/jobdescriptionadd', row.title, row.status, "update"]);
+    this.jobdescedit = this.jobdescview.filter((elem: any) => elem.id === row.id)
+    this.jobdescedit[0].save = "update"
+    this.router.navigateByUrl('/jobdescriptionadd', { state: this.jobdescedit });
   }
 
 

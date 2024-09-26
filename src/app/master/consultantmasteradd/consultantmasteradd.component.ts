@@ -14,7 +14,7 @@ export class ConsultantmasteraddComponent implements OnInit {
   consultant: ConsultantMaster = new ConsultantMaster();
   @ViewChild('name') nameElement!: ElementRef;
   status: string = "InActive";
-  statuscolor: string = "rgb(249 125 125)";
+  statuscolor: string = "rgb(153 153 153)";
   save: any;
   savedata: boolean = true;
   slno1: any;
@@ -28,9 +28,9 @@ export class ConsultantmasteraddComponent implements OnInit {
   status1: any;
   constructor(private route: ActivatedRoute, private fb: FormBuilder) { }
   sub!: any;
-  // emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+
   ngOnInit(): void {
-    // debugger;
+    
     this.sub = this.route.paramMap.subscribe(params => {
 
       this.name1 = params.get('name');
@@ -44,7 +44,7 @@ export class ConsultantmasteraddComponent implements OnInit {
       this.save = params.get('save');
       console.log(params);
     });
-    debugger;
+   
 
     this.consultant.name = this.name1;
     this.consultant.organization = this.organization1;

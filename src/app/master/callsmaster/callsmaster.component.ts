@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CallsMaster } from '../model/callsmaster';
+import { CallsmsaterService } from '../service/callsmaster.service';
 
 @Component({
   selector: 'app-callsmaster',
@@ -13,23 +14,31 @@ import { CallsMaster } from '../model/callsmaster';
 export class CallsmasterComponent implements OnInit {
   @ViewChild('search') searchElement!: ElementRef;
   @ViewChild('name') nameElement!: ElementRef;
-  displayedColumns: string[] = ['name', 'status', 'tools'];
+  displayedColumns: string[] = ['sno', 'name', 'status', 'tools'];
   dataSource!: MatTableDataSource<CallsMaster>;
-  company: CallsMaster[] = [
-    { name: 'Incomming', status: "Active" },
-    { name: 'Outgoing', status: "Inactive" },
-  ];
+  callsview: CallsMaster[] = [];
+  callsedit: CallsMaster[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   selectedRowIndex: any;
-  constructor(public router: Router) { }
+  constructor(public router: Router, private service: CallsmsaterService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.searchElement.nativeElement.focus();
     }, 0);
-    this.dataSource = new MatTableDataSource(this.company);
+    this.view();
   }
+
+  view() {
+    this.service.view().then(data => {
+      this.callsview = data.result;
+      this.dataSource = new MatTableDataSource(this.callsview);
+    }, err => {
+      alert(err);
+    });
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -39,12 +48,14 @@ export class CallsmasterComponent implements OnInit {
   }
 
   add() {
-    this.router.navigate(['/callsmasteradd', "", "InActive", "add"]);
+    const call: CallsMaster = new CallsMaster();
+    this.callsedit[0] = call;
+    this.router.navigateByUrl('/callsmasteradd', { state: this.callsedit });
   }
 
   selectedrow(row: any) {
-    this.router.navigate(['/callsmasteradd', row.name, row.status, "update"]);
+    this.callsedit = this.callsview.filter((elem: any) => elem.id === row.id)
+    this.callsedit[0].save = "update"
+    this.router.navigateByUrl('/callsmasteradd', { state: this.callsedit });
   }
-
-
 }

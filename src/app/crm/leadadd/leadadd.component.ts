@@ -4,7 +4,6 @@ import { MatSelect } from '@angular/material/select';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { feedbackentryadd } from '../crmmodel/enquiry';
 import { Branchselect, Branchselect1, Feedbackentryadded, Leadtableview } from '../crmmodel/lead';
 import { Router } from '@angular/router';
 
@@ -161,31 +160,7 @@ export class LeadaddComponent implements OnInit {
   update() {
 
   }
-  // branchtypechange(event: any) {
-
-  //   debugger;
-  //   if (event.value === 0) {
-  //     this.branch = false;
-  //     this.branches1 = true;
-  //   } else if (event.value === 1) {
-  //     this.branch = true;
-  //     this.branches1 = false;
-  //   }
-  //   console.log(event);
-  // }
-  // branch1typechange(event: any) {
-
-  //   debugger;
-  //   if (event.value === 0) {
-  //     this.branch = false;
-  //     this.branches1 = true;
-  //   } else if (event.value === 1) {
-  //     this.branch = true;
-  //     this.branches1 = false;
-  //   }
-  //   console.log(event);
-  // }
-
+  
 
 
 

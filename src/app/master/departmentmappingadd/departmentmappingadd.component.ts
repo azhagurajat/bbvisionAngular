@@ -37,7 +37,7 @@ export class DepartmentmappingaddComponent implements OnInit {
   login: LoginPojo = new LoginPojo();
   deptmapping: DepartmentMapping = new DepartmentMapping();
   status: string = "InActive";
-  statuscolor: string = "rgb(249 125 125)";
+  statuscolor: string = "rgb(153 153 153)";
   savedata: boolean = true;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private commonservice: CommonService, private service: DepartmentmappingService, private router: Router) { }
@@ -48,7 +48,7 @@ export class DepartmentmappingaddComponent implements OnInit {
 
     await this.deptselect();
     // await this.compselect();
-    await this.selecthead();
+    // await this.selecthead();
     // this.companyselectedit = this.companyselect.filter(
     //   as => as.companycode === this.deptmapping.companycode
     // );
@@ -95,6 +95,7 @@ export class DepartmentmappingaddComponent implements OnInit {
 
   async deptselect() {
     await this.commonservice.deptselect().then(data => {
+      debugger;
       this.departmentselect = data.result;
     }, err => {
       alert(err);
@@ -102,13 +103,14 @@ export class DepartmentmappingaddComponent implements OnInit {
   }
   async compselect() {
     await this.commonservice.deptselect().then(data => {
+      debugger;
       this.companyselect = data.result;
     }, err => {
       alert(err);
     });
   }
   async selecthead() {
-    await this.commonservice.deptselect().then(data => {
+    await this.commonservice.headselect().then(data => {
       this.headselect = data.result;
     }, err => {
       alert(err);

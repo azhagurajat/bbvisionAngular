@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Sectionmaster } from '../model/sectionmaster';
+import { SectionmasterService } from '../service/sectionmaster.service';
 
 @Component({
   selector: 'app-sectionmaster',
@@ -13,23 +14,31 @@ import { Sectionmaster } from '../model/sectionmaster';
 export class SectionmasterComponent implements OnInit {
 
   @ViewChild('search') searchElement!: ElementRef;
-  displayedColumns: string[] = ['name', 'status', 'tools'];
+  displayedColumns: string[] = ['sno', 'name', 'status', 'tools'];
   dataSource!: MatTableDataSource<Sectionmaster>;
-  question: Sectionmaster[] = [
-    { name: 'Aptitude', status: true },
-    { name: 'Reasoning', status: false },
-    { name: 'Technical', status: true }
-  ];
+  sectionview: Sectionmaster[] = [];
+  sectionedit: Sectionmaster[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(public router: Router) { }
+
+  constructor(public router: Router, private service: SectionmasterService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.searchElement.nativeElement.focus();
     }, 0);
-    this.dataSource = new MatTableDataSource(this.question);
+    this.view();
   }
+
+  view() {
+    this.service.view().then(data => {
+      this.sectionview = data.result;
+      this.dataSource = new MatTableDataSource(this.sectionview);
+    }, err => {
+      alert(err);
+    });
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -38,11 +47,15 @@ export class SectionmasterComponent implements OnInit {
     }
   }
   add() {
-    this.router.navigate(['/sectionmasteradd', "", "InActive", "add"]);
+    const section: Sectionmaster = new Sectionmaster();
+    this.sectionedit[0] = section;
+    this.router.navigateByUrl('/sectionmasteradd', { state: this.sectionedit });
   }
 
   selectedrow(row: any) {
-    this.router.navigate(['/sectionmasteradd', row.name, row.status, "update"]);
+    this.sectionedit = this.sectionview.filter((elem: any) => elem.id === row.id)
+    this.sectionedit[0].save = "update"
+    this.router.navigateByUrl('/sectionmasteradd', { state: this.sectionedit });
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

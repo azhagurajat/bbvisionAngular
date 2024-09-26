@@ -1,34 +1,29 @@
-<button mat-mini-fab routerLink="../../../../../../assetmaster" 
-style="background-color: #5ac6c6;float: right;margin-right: 10px;">
+<button mat-mini-fab routerLink="../assetmaster" style="background-color: #5ac6c6;float: right;margin-right: 10px;">
     <mat-icon>arrow_back</mat-icon>
 </button>
 <div fxLayout="column">
     <div style="-webkit-align-items: center;" fxLayout="column">
-        <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;"
-            onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true'
-            id="_arrowdown" tabindex='0'>
+        <img src="assets/images/BB LOGO.png" style="width:250px;height:150px;border-style: none;" onFocus="if(document.getElementById('_arrowdown').disabled == true){return false;}" disabled='true' id="_arrowdown" tabindex='0'>
     </div>
     <form [formGroup]="formgroup" class="example-form" fxLayout="column" fxFlex="50" style="-webkit-align-items: center;">
         <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label  style="font-weight: bold;color: #464545;"#search id="search" cdkFocusInitial>Assets</mat-label>
-           <input matInput #name id="name" formControlName="asset">
+            <mat-label style="font-weight: bold;color: #464545;">Assets</mat-label>
+            <input matInput #name id="name" formControlName="name">
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
             <mat-label style="font-weight: bold;color: #464545;">Assets Type</mat-label>
-            <mat-select #name cdkFocusInitial formControlName="assettype" >
-                <mat-option *ngFor="let assettype of assetstypeselect" [value]="assettype.assetstypecode">
-                    {{assettype.assetstype}}
+            <mat-select formControlName="assettypename">
+                <mat-option *ngFor="let assettype of assetstypeselect" [value]="assettype.assetstypename">
+                    {{assettype.assetstypename}}
                 </mat-option>
-                
+            
             </mat-select>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label  style="font-weight: bold;color: #464545;">prefix code</mat-label>
-            
-            <input matInput #name id="name" formControlName="prefix">
+            <mat-label style="font-weight: bold;color: #464545;">prefix code</mat-label>
+            <input matInput formControlName="prefixcode">
         </mat-form-field>
-        <mat-slide-toggle (change)="onToggle($event)"formControlName="status">Status</mat-slide-toggle>
-    
+        <mat-slide-toggle (change)="onToggle($event)" formControlName="status">Status</mat-slide-toggle>
         <mat-label style="
         color: black;
         border-radius: 20px;

@@ -1,24 +1,16 @@
-export class AssetmasterMapping {
-    assets: string = "";
-    assetstype: string = "";
+export class Assetmaster {
+    name: string = "";
+    assettypename: string = "";
     prefixcode: string = "";
     status: boolean = false;
- 
-  
- 
-}
-
-export class Assetsselect {
-    assets: string = "";
-    assetscode: number = 0;
+    id: number = 0;
+    created_by: number = 0;
+    modified_by: number = 0;
+    save: string = "add";
+    sno: number = 0;
 }
 
 export class Assetstypeselect {
-    assetstype: string = "";
-    assetstypecode: number = 0;
+    assetstypename: string = "";
 }
 
-export class Prefixcodeselect {
-    prefixcodename: string = "";
-    prefixcode: number = 0;
-}

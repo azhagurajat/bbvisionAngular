@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonService } from 'src/app/common/common.service';
+import { Assetstypeselect } from '../model/assetsmaster';
 import { Departmentselect } from '../model/departmentmapping';
 import { DesignationMaster } from '../model/designationmaster';
 import { LoginPojo } from '../model/login';
@@ -19,21 +20,16 @@ export class DesignationmasteraddComponent implements OnInit {
   formgroup!: FormGroup;
   login: LoginPojo = new LoginPojo();
   designation: DesignationMaster = new DesignationMaster();
-  id: any;
-  name: any;
-  statuses: any;
-  deptid: any;
+
   @ViewChild('desname') nameElement!: ElementRef;
   status: string = "InActive";
   statuscolor: string = "rgb(153 153 153)";
-  save: any;
   savedata: boolean = true;
 
   constructor(private commonservice: CommonService, private service: DesignationmasterService, private fb: FormBuilder, private router: Router) {
   }
 
   async ngOnInit() {
-    debugger;
     this.designation = history.state[0];
     await this.deptselect();
     if (this.designation.save === "add") {
@@ -49,7 +45,6 @@ export class DesignationmasteraddComponent implements OnInit {
       deptname: [this.designation.dept_code, [Validators.required]],
       status: [this.designation.status, [Validators.required]]
     });
-    debugger;
     if (this.departmentselectedit.length > 0) {
       this.formgroup.controls.deptname.setValue(this.departmentselectedit[0].deptcode);
     } else {
@@ -62,7 +57,6 @@ export class DesignationmasteraddComponent implements OnInit {
   }
 
   async deptselect() {
-    debugger;
     await this.commonservice.deptselect().then(data => {
       debugger;
       this.departmentselect = data.result;
